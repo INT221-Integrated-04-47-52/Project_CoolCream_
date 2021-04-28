@@ -10,11 +10,9 @@
     <span
       class="text-gray-600 font-sans text-xl
   py-2 font-bold mb-2 "
-      >{{ icecream.name }}</span
-    >
+      >{{ icecream.name }}</span>
     <br />
-    <button
-      class=" btn btn-primary mt-2 bg-gradient-to-r from-green-500 
+    <button class=" btn btn-primary mt-2 bg-gradient-to-r from-green-500 
   to-green-800 hover:from-blue-500 hover:to-pink-500 text-white font-bold 
   py-2 px-4 rounded focus:ring transform transition hover:scale-105 
   duration-300 ease-in-out"

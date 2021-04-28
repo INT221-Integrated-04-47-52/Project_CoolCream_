@@ -41,7 +41,10 @@ export default {
             image: icecream.image,
             name:  icecream.name,
             price:  icecream.price,
-            describe:  icecream.describe
+            describe:  icecream.describe,
+            size: icecream.size,
+            brand: icecream.brand,
+            topping: icecream.topping
           })
         })
         const data = await res.json()
@@ -51,7 +54,10 @@ export default {
             image: data.image,
             name:  data.name,
             price:  data.price,
-            describe:  data.describe
+            describe:  data.describe,
+            size: data.size,
+            brand: data.brand,
+            topping: data.topping
             }
             : f
         )
