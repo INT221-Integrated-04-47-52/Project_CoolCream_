@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div
-      class="bg-white text-left  w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
-    >
+    <div class="bg-white text-left w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
       <div class="mb-4">
         <label
           class="block text-center text-black text-xl py-2 font-bold mb-2"
@@ -14,8 +12,7 @@
         <form @submit="onFormSubmit">
           <div class="form-group">
             <label
-              class="text-left block text-blue-600 
-              py-2 font-bold mt-2 items-start"
+              class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
               htmlFor="name"
             >
               name</label
@@ -37,8 +34,7 @@
 
           <div class="form-group">
             <label
-              class="text-left block mt-4 text-blue-600
-              font-bold  items-start"
+              class="text-left block mt-4 text-blue-600 font-bold items-start"
               htmlFor="price"
               >price</label
             >
@@ -58,8 +54,7 @@
           </div>
           <div class="form-group">
             <label
-              class="text-left block text-blue-600 
-                py-2 font-bold mt-2 items-start"
+              class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
               htmlFor="describe"
               >Describe</label
             >
@@ -77,35 +72,37 @@
               {{ getErrorMessage("describe") }}
             </div>
           </div>
-     <!-- Brand -->
-        
-     <div class="form-group">
-      <label
-        class="w-2/11 text-left block text-blue-600 py-2 
-        font-bold mt-2 items-start"
-        htmlFor="brand"  >Brand</label>
+          <!-- Brand -->
 
-        <div>
-         
-          <select class="border-2 w-2/12 p-2 transform transition 
-          duration-300 ease-in-out" id="brand" name="banlist" 
-          v-model="formElements.brand.value" :class="getInputClass('brand')"
-        @change="sendBrand()"> 
-        <option v-for="ban in brandArray" :key="ban.id" >
-              {{ban.name}}
-            </option>
-          </select>
-     
-        </div>
-        <div>
-      </div>
-      <div class="invalid-feedback">
-        {{ getErrorMessage("brand") }}
-      </div>
-    </div>   
+          <div class="form-group">
+            <label
+              class="w-2/11 text-left block text-blue-600 py-2 font-bold mt-2 items-start"
+              htmlFor="brand"
+              >Brand</label
+            >
 
-<!-- Size -->
-        <div class="form-group">
+            <div>
+              <select
+                class="border-2 w-2/12 p-2 transform transition duration-300 ease-in-out"
+                id="brand"
+                name="banlist"
+                v-model="formElements.brand.value"
+                :class="getInputClass('brand')"
+                @change="sendBrand()"
+              >
+                <option v-for="ban in brandArray" :key="ban.id">
+                  {{ ban.name }}
+                </option>
+              </select>
+            </div>
+            <div></div>
+            <div class="invalid-feedback">
+              {{ getErrorMessage("brand") }}
+            </div>
+          </div>
+
+          <!-- Size -->
+          <div class="form-group">
             <div class="text-blue-600 flex flex-row -mt-2">
               <label
                 class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
@@ -121,13 +118,11 @@
                 name="sizelist"
                 @click="selectSize(siz.name)"
                 :class="{
-                  'bg-green-400 text-white': formElements.size.value.includes(
-                    siz.name),}"
+                  'bg-green-400 text-white': formElements.size.value.includes(siz.name),
+                }"
                 :key="siz.id"
                 @keyup="onFormChange($event)"
-                class="mr-2 text-center w-16 border-green-400 mt-4 border-2 hover:bg-green-400 
-                hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition
-                 hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
+                class="mr-2 text-center w-16 border-green-400 mt-4 border-2 hover:bg-green-400 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
               >
                 {{ siz.name }}
               </option>
@@ -140,54 +135,57 @@
               {{ getErrorMessage("size") }}
             </div>
           </div>
-      
-<!-- Topping-->
-<div class="form-group">
-   <div class="text-pink-400 flex flex-col -mt-2 ">
-     <div>  <label
-      class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
-      htmlFor="size">Topping</label >
-    </div>
-    <div  class="flex flex-row"  >  <option v-for="top in toppingArray" value="top.name" id="topping" name="toppinglist" 
-               @click="selectTopping(top.name)"
-                :class="{  'bg-pink-400 text-white': 
-                formElements.topping.value.includes(top.name)}"
-                :key="top.id"  @keyup="onFormChange($event)"
-                class="mr-2 text-center w-36 border-pink-400 mt-4 border-2 hover:bg-pink-400 
-                hover:text-white font-bold  py-0.5 px-auto rounded focus:ring transform transition
-                 hover:scale-105
-                duration-300 ease-in-out btn btn-primary cursor-pointer"> {{top.name}}
-         
-                </option></div> 
-                <div  class="flex flex-row">  <div class="mr-11" v-for="top in toppingArray" :key="top.id">
-                  <img :src="top.image" /></div>
-              </div>
 
-            </div> 
-          </div> 
+          <!-- Topping-->
+          <div class="form-group">
+            <div class="text-pink-400 flex flex-col -mt-2">
+              <div>
+                <label
+                  class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
+                  htmlFor="size"
+                  >Topping</label
+                >
+              </div>
+              <div class="flex flex-row">
+                <option
+                  v-for="top in toppingArray"
+                  value="top.name"
+                  id="topping"
+                  name="toppinglist"
+                  @click="selectTopping(top.name)"
+                  :class="{
+                    'bg-pink-400 text-white': formElements.topping.value.includes(
+                      top.name
+                    ),
+                  }"
+                  :key="top.id"
+                  @keyup="onFormChange($event)"
+                  class="mr-2 text-center w-36 border-pink-400 mt-4 border-2 hover:bg-pink-400 hover:text-white font-bold py-0.5 px-auto rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
+                >
+                  {{ top.name }}
+                </option>
+              </div>
+              <div class="flex flex-row">
+                <div class="mr-11" v-for="top in toppingArray" :key="top.id">
+                  <img :src="top.image" />
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div>
             <label
-              class="text-left block mt-4 text-blue-600
-        font-bold  items-start"
+              class="text-left block mt-4 text-blue-600 font-bold items-start"
               htmlFor="image"
               >Image</label
             >
 
-            <input
-              type="file"
-              class="w-80 mt-4 focus:outline-none"
-              @change="uploadImg"
-            />
+            <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
           </div>
           <div class="text-center">
             <button
               type="submit"
-              class="mt-4 bg-gradient-to-r from-purple-800 
-                to-green-500 hover:from-pink-500 hover:to-green-500
-                 text-white font-bold py-2 px-4 rounded 
-                 focus:ring transform transition hover:scale-105
-                  duration-300 ease-in-out btn btn-primary"
+              class="mt-4 bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary"
               :disabled="!formValid"
             >
               Submit
@@ -232,7 +230,7 @@ export default {
           },
           touched: false,
           error: { status: true, message: "" },
-        }, 
+        },
         brand: {
           type: "text",
           value: "",
@@ -240,11 +238,10 @@ export default {
             required: true,
             minLength: 1,
             maxLength: 200,
-          
           },
           touched: false,
           error: { status: true, message: "" },
-        }, 
+        },
         price: {
           type: "price",
           value: null,
@@ -266,7 +263,8 @@ export default {
           },
           touched: false,
           error: { status: true, message: "" },
-        },topping: {
+        },
+        topping: {
           type: "text",
           value: [],
           validator: {
@@ -276,7 +274,7 @@ export default {
           },
           touched: false,
           error: { status: true, message: "" },
-        }
+        },
       },
       formValid: false,
     };
@@ -284,7 +282,6 @@ export default {
 
   methods: {
     selectTopping(topping) {
-      
       if (this.formElements.topping.value.includes(topping)) {
         this.formElements.topping.value = this.formElements.topping.value.filter(
           (t) => t !== topping
@@ -316,10 +313,7 @@ export default {
       let updatedForm = { ...this.formElements };
       updatedForm[name].value = value;
       updatedForm[name].touched = true;
-      const validatorObject = this.checkValidator(
-        value,
-        updatedForm[name].validator
-      );
+      const validatorObject = this.checkValidator(value, updatedForm[name].validator);
       updatedForm[name].error = {
         status: validatorObject.status,
         message: validatorObject.message,
@@ -389,7 +383,7 @@ export default {
             describe: formData.describe,
             size: formData.size,
             brand: formData.brand,
-            topping: formData.topping
+            topping: formData.topping,
           }),
         });
       } catch (error) {
@@ -397,23 +391,25 @@ export default {
       }
     },
     async fetchSize() {
-      const res = await fetch('http://localhost:5001/size') 
-      const data = await res.json() 
-      return data
-    }, async fetchBrand() {
-      const res = await fetch('http://localhost:5001/brand') 
-      const data = await res.json() 
-      return data
-    },async fetchTopping() {
-      const res = await fetch('http://localhost:5001/topping') 
-      const data = await res.json() 
-      return data
+      const res = await fetch("http://localhost:5001/size");
+      const data = await res.json();
+      return data;
     },
-   
-    }, async created() {
-      this.sizeArray = await this.fetchSize();
-      this.brandArray = await this.fetchBrand();
-      this.toppingArray = await this.fetchTopping();
+    async fetchBrand() {
+      const res = await fetch("http://localhost:5001/brand");
+      const data = await res.json();
+      return data;
+    },
+    async fetchTopping() {
+      const res = await fetch("http://localhost:5001/topping");
+      const data = await res.json();
+      return data;
+    },
+  },
+  async created() {
+    this.sizeArray = await this.fetchSize();
+    this.brandArray = await this.fetchBrand();
+    this.toppingArray = await this.fetchTopping();
   },
 };
 </script>
