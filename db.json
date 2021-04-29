@@ -5,16 +5,16 @@
       "price": 50,
       "describe": "Oreo cookie pieces blended with DQ vanilla soft serve to Blizzard Perfection.",
       "size": [
-        "M",
-        "S"
+        "L",
+        "XL"
       ],
-      "brand": "Dairy Queen",
+      "brand": "Suzukien",
       "topping": [
-        "Almond",
+        "Cookie crumble",
         "Oreo",
-        "Chocolate ball",
-        "Chocolate chip"
+        "Chocolate ball"
       ],
+      "lastday": "2021-07-16",
       "id": 1
     },
     {
@@ -22,16 +22,17 @@
       "price": "65",
       "describe": "Chocolate ice cream, mixed with chocolate traffles",
       "size": [
-        "M",
-        "S"
+        "S",
+        "M"
       ],
       "brand": "Swensens",
       "topping": [
         "Almond",
-        "Oreo",
         "Chocolate chip",
-        "Brownie"
+        "Brownie",
+        "Rainbow"
       ],
+      "lastday": "2021-01-18",
       "id": 2
     },
     {
@@ -49,6 +50,7 @@
         "Chocolate chip",
         "Brownie"
       ],
+      "lastday": "2020-05-16",
       "id": 3
     },
     {
@@ -66,6 +68,7 @@
         "Chocolate chip",
         "Brownie"
       ],
+      "lastday": "2020-05-16",
       "id": 4
     }
   ],
