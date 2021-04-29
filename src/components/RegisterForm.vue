@@ -214,8 +214,8 @@ export default {
           value: null,
           validator: {
             required: true,
-            minLength: 5,
-            maxLength: 15,
+            minLength: 1,
+            maxLength: 50,
           },
           touched: false,
           error: { status: true, message: "" },
@@ -225,8 +225,8 @@ export default {
           value: null,
           validator: {
             required: true,
-            minLength: 5,
-            maxLength: 300,
+            minLength: 1,
+            maxLength: 200,
           },
           touched: false,
           error: { status: true, message: "" },
@@ -248,7 +248,7 @@ export default {
           validator: {
             required: true,
             minLength: 1,
-            maxLength: 10,
+            maxLength: 4,
           },
           touched: false,
           error: { status: true, message: "" },
