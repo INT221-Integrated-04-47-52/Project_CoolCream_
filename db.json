@@ -3,6 +3,7 @@
     {
       "name": "Oreo Blizzard",
       "price": 50,
+      "describe": "Oreo cookie pieces blended with DQ vanilla soft serve to Blizzard Perfection.",
       "size": [
         "M",
         "S"
@@ -10,9 +11,62 @@
       "brand": "Dairy Queen",
       "topping": [
         "Almond",
-        "Oreo"
+        "Oreo",
+        "Chocolate ball",
+        "Chocolate chip"
       ],
       "id": 1
+    },
+    {
+      "name": "Dark chocolate truffle",
+      "price": "65",
+      "describe": "Chocolate ice cream, mixed with chocolate traffles",
+      "size": [
+        "M",
+        "S"
+      ],
+      "brand": "Swensens",
+      "topping": [
+        "Almond",
+        "Oreo",
+        "Chocolate chip",
+        "Brownie"
+      ],
+      "id": 2
+    },
+    {
+      "name": "Dark chocolate",
+      "price": "65",
+      "describe": "Chocolate ice cream, mixed with chocolate traffles",
+      "size": [
+        "M",
+        "S"
+      ],
+      "brand": "Swensens",
+      "topping": [
+        "Almond",
+        "Oreo",
+        "Chocolate chip",
+        "Brownie"
+      ],
+      "id": 3
+    },
+    {
+      "name": "Vanilla",
+      "price": "65",
+      "describe": "Chocolate ice cream, mixed with chocolate traffles",
+      "size": [
+        "M",
+        "S"
+      ],
+      "brand": "Swensens",
+      "topping": [
+        "Almond",
+        "Oreo",
+        "Chocolate chip",
+        "Brownie"
+      ],
+      "id": 4
     }
   ],
   "brand": [
