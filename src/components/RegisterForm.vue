@@ -8,25 +8,21 @@
         >
           Add icecreams to store
         </label>
-
         <form @submit="onFormSubmit">
           <div class="form-group">
             <label
               class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
-              htmlFor="name"
-            >
-              name</label
-            >
+              htmlFor="name">name</label>
             <input
-              class="shadow text-left justify-start appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-              type="text"
+              class="shadow text-left justify-start appearance-none border rounded w-full p-3 
+              text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 
+              ease-in-out" type="text"
               placeholder="input your name.."
               :class="getInputClass('name')"
               id="name"
               name="name"
               v-model="formElements.name.value"
-              @keyup="onFormChange($event)"
-            />
+              @keyup="onFormChange($event)"/>
             <div class="invalid-feedback">
               {{ getErrorMessage("name") }}
             </div>
@@ -35,9 +31,7 @@
           <div class="form-group">
             <label
               class="text-left block mt-4 text-blue-600 font-bold items-start"
-              htmlFor="price"
-              >price</label
-            >
+              htmlFor="price">price</label>
             <input
               class="mt-2 shadow text-left appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out invalid-feedback"
               type="price"
@@ -46,8 +40,7 @@
               name="price"
               v-model="formElements.price.value"
               @keyup="onFormChange($event)"
-              placeholder="Input your price.."
-            />
+              placeholder="Input your price.."/>
             <div>
               {{ getErrorMessage("price") }}
             </div>
@@ -56,8 +49,7 @@
             <label
               class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
               htmlFor="describe"
-              >Describe</label
-            >
+              >Describe</label>
             <input
               class="shadow text-left justify-start appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
               type="text"
@@ -66,8 +58,7 @@
               id="describe"
               name="describe"
               v-model="formElements.describe.value"
-              @keyup="onFormChange($event)"
-            />
+              @keyup="onFormChange($event)"/>
             <div class="invalid-feedback">
               {{ getErrorMessage("describe") }}
             </div>
@@ -78,8 +69,7 @@
             <label
               class="w-2/11 text-left block text-blue-600 py-2 font-bold mt-2 items-start"
               htmlFor="brand"
-              >Brand</label
-            >
+              >Brand</label>
 
             <div>
               <select
@@ -88,8 +78,7 @@
                 name="banlist"
                 v-model="formElements.brand.value"
                 :class="getInputClass('brand')"
-                @change="sendBrand()"
-              >
+                @change="sendBrand()">
                 <option v-for="ban in brandArray" :key="ban.id">
                   {{ ban.name }}
                 </option>
@@ -106,19 +95,17 @@
             <div class="text-blue-600 flex flex-row -mt-2">
               <label
                 class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
-                htmlFor="size"
-                >Size</label
-              >
+                htmlFor="size">Size</label>
             </div>
             <div class="text-green-600 flex flex-row -mt-2">
               <option
                 v-for="siz in sizeArray"
-                value="siz.name"
+                value="siz"
                 id="size"
                 name="sizelist"
-                @click="selectSize(siz.name)"
+                @click="selectSize(siz)"
                 :class="{
-                  'bg-green-400 text-white': formElements.size.value.includes(siz.name),
+                  'bg-green-400 text-white': formElements.size.value.includes(siz),
                 }"
                 :key="siz.id"
                 @keyup="onFormChange($event)"
@@ -127,7 +114,6 @@
                 {{ siz.name }}
               </option>
 
-              <div>{{ formElements.size.value }}</div>
               <!--&getInputClass('size')-->
             </div>
 
@@ -135,16 +121,31 @@
               {{ getErrorMessage("size") }}
             </div>
           </div>
+          <!--Lastday-->
+          <div class="form-group">
+            <label
+              class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
+              htmlFor="lastday">Last day of sale</label>
+            <input
+              class="shadow text-left justify-start appearance-none border rounded w-2/12 p-3 text-gray-700 leading-tight focus:ring"
+              type="date"
+              :class="getInputClass('lastday')"
+              id="lastday"
+              name="lastday"
+              v-model="formElements.lastday.value"
+              @keyup="onFormChange($event)"/>
 
+            <div class="invalid-feedback">
+              {{ getErrorMessage("lastday") }}
+            </div>
+          </div>
           <!-- Topping-->
           <div class="form-group">
             <div class="text-pink-400 flex flex-col -mt-2">
               <div>
                 <label
                   class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
-                  htmlFor="size"
-                  >Topping</label
-                >
+                  htmlFor="size">Topping</label>
               </div>
               <div class="flex flex-row">
                 <option
@@ -176,9 +177,7 @@
           <div>
             <label
               class="text-left block mt-4 text-blue-600 font-bold items-start"
-              htmlFor="image"
-              >Image</label
-            >
+              htmlFor="image">Image</label>
 
             <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
           </div>
@@ -186,8 +185,7 @@
             <button
               type="submit"
               class="mt-4 bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary"
-              :disabled="!formValid"
-            >
+              :disabled="!formValid">
               Submit
             </button>
           </div>
@@ -260,6 +258,17 @@ export default {
             required: true,
             minLength: 1,
             maxLength: 200,
+          },
+          touched: false,
+          error: { status: true, message: "" },
+        },
+        lastday: {
+          type: "text",
+          value: null,
+          validator: {
+            required: true,
+            minLength: 1,
+            maxLength: 4,
           },
           touched: false,
           error: { status: true, message: "" },
@@ -383,6 +392,7 @@ export default {
             describe: formData.describe,
             size: formData.size,
             brand: formData.brand,
+            lastday: formData.lastday,
             topping: formData.topping,
           }),
         });
