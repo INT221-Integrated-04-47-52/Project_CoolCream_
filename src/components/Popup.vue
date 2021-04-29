@@ -3,7 +3,7 @@
     class="flex justify-center items-center absolute md:fixed z-0 md:z-50 inset-x-0 top-5 md:inset-0"
   >
     <!-- div card popup -->
-    <div class="m-5 w-screen h-auto p-5 bg-white rounded-3xl shadow-lg">
+    <div class="mx-16 w-screen h-auto p-5 bg-white rounded-3xl shadow-lg">
       <div
         class="cursor-pointer focus:ring transform transition duration-300 ease-out flex flex-row-reverse"
         @click="close"
@@ -86,7 +86,7 @@
 
             <!--Size-->
             <div class="flex justify-start">
-            <p class="text-black">Size :</p>
+            <p class="text-black">Size : </p>
             <span v-if="isEdit">
               <div class="mx-2 flex text-pink-400 flex flex-row md:grid md:grid-flow-col md:grid-cols-4 gap-2">
                 <option
@@ -110,7 +110,7 @@
 
             <!--Topping-->
             <div class="flex justify-start">
-              <p class="text-black">Topping :</p>
+              <p class="text-black">Topping : </p>
               <span v-if="isEdit">
                 <div
                   class="mx-2 flex text-blue-800 flex flex-row grid grid-flow-col grid-cols-2 grid-rows-4 md:grid md:grid-flow-col md:grid-cols-4 md:grid-rows-2 gap-2 "
@@ -141,7 +141,7 @@
               type="button "
               @click.prevent="submit(icecream)"
             >
-              Submit
+              Save
             </button>
             <button
               class="justify-center btn btn-primary bg-gradient-to-b from-blue-500 to-blue-800 hover:from-pink-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
