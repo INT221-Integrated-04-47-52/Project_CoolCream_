@@ -3,16 +3,15 @@
     {
       "name": "Oreo Blizzard",
       "price": 50,
-      "brand": "Dairy Queen",
       "size": [
-        "L",
-        "M"
-      ],  
+        "M",
+        "S"
+      ],
+      "brand": "Dairy Queen",
       "topping": [
         "Almond",
         "Oreo"
       ],
-      
       "id": 1
     }
   ],
@@ -61,13 +60,45 @@
     }
   ],
   "topping": [
-    { "id": 3001, "name": "Almond" ,"image": "https://i.ibb.co/8xmY2Kz/topping1.png"},
-    { "id": 3002, "name": "Brownie","image": "https://i.ibb.co/tpp6Kxd/topping2.png" },
-    { "id": 3003, "name": "Chocolate ball" ,"image": "https://i.ibb.co/8Bj73Kc/topping3.png" },
-    { "id": 3004, "name": "Chocolate chip" ,"image": "https://i.ibb.co/FmxX72F/topping4.png" },
-    { "id": 3005, "name": "Cookie crumble" ,"image": "https://i.ibb.co/ZNCDbdS/topping5.png" },
-    { "id": 3006, "name": "Oreo","image": "https://i.ibb.co/cyDh1Mx/topping6.png"  },
-    { "id": 3007, "name": "Rainbow" ,"image": "https://i.ibb.co/HFgL08q/topping7.png" },
-    { "id": 3007, "name": "Sticky rice" ,"image": "https://i.ibb.co/z4DczRy/topping8.png" }
+    {
+      "id": 3001,
+      "name": "Almond",
+      "image": "https://i.ibb.co/8xmY2Kz/topping1.png"
+    },
+    {
+      "id": 3002,
+      "name": "Brownie",
+      "image": "https://i.ibb.co/tpp6Kxd/topping2.png"
+    },
+    {
+      "id": 3003,
+      "name": "Chocolate ball",
+      "image": "https://i.ibb.co/8Bj73Kc/topping3.png"
+    },
+    {
+      "id": 3004,
+      "name": "Chocolate chip",
+      "image": "https://i.ibb.co/FmxX72F/topping4.png"
+    },
+    {
+      "id": 3005,
+      "name": "Cookie crumble",
+      "image": "https://i.ibb.co/ZNCDbdS/topping5.png"
+    },
+    {
+      "id": 3006,
+      "name": "Oreo",
+      "image": "https://i.ibb.co/cyDh1Mx/topping6.png"
+    },
+    {
+      "id": 3007,
+      "name": "Rainbow",
+      "image": "https://i.ibb.co/HFgL08q/topping7.png"
+    },
+    {
+      "id": 3007,
+      "name": "Sticky rice",
+      "image": "https://i.ibb.co/z4DczRy/topping8.png"
+    }
   ]
 }
