@@ -44,7 +44,8 @@ export default {
             describe:  icecream.describe,
             size: icecream.size,
             brand: icecream.brand,
-            topping: icecream.topping
+            topping: icecream.topping,
+            lastday: icecream.lastday
           })
         })
         const data = await res.json()
@@ -57,7 +58,8 @@ export default {
             describe:  data.describe,
             size: data.size,
             brand: data.brand,
-            topping: data.topping
+            topping: data.topping,
+            lastday: data.lastday
             }
             : f
         )

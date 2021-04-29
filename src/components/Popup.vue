@@ -86,31 +86,52 @@
 
             <!--Size-->
             <div class="flex justify-start">
-            <p class="text-black">Size : </p>
-            <span v-if="isEdit">
-              <div class="mx-2 flex text-pink-400 flex flex-row md:grid md:grid-flow-col md:grid-cols-4 gap-2">
-                <option
-                  v-for="siz in sizeArray"
-                  value="siz.name"
-                  id="size"
-                  name="size"
-                  @click="selectSize(siz.name)"
-                  :class="{
-                    'bg-blue-800 text-white': sizeEnter.includes(siz.name),
-                  }"
-                  :key="siz.id"
-                  class="text-center w-16 border-blue-800 border-2 hover:bg-blue-800 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
+              <p class="text-black">Size :</p>
+              <span v-if="isEdit">
+                <div
+                  class="mx-2 flex text-pink-400 flex flex-row md:grid md:grid-flow-col md:grid-cols-4 gap-2"
                 >
-                  {{ siz.name }}
-                </option>
-              </div>
-            </span>
-            <span v-else class="text-pink-500">{{ icecream.size }}</span>
+                  <option
+                    v-for="siz in sizeArray"
+                    value="siz.name"
+                    id="size"
+                    :key="siz.id"
+                    name="size"
+                    @click="selectSize(siz.name)"
+                    :class="{
+                      'bg-blue-800 text-white': sizeEnter.includes(siz.name),
+                    }"
+                    class="text-center w-16 border-blue-800 border-2 hover:bg-blue-800 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
+                  >
+                    {{ siz.name }}
+                  </option>
+                </div>
+              </span> 
+              <span v-else class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold  rounded">
+                <span class="w-20 bg-blue-800  px-4 ml-4 mr-2 rounded "
+                v-for="size in icecream.size"
+                value="size"
+                id="size"
+                :key="size"
+                name="size"> {{ size}} </span>
+              </span>
             </div>
-
+            <!--lastday-->
+            <p class="text-black">
+              Lastday of sale:
+              <input
+                class="shadow text-left justify-start appearance-none border rounded w-56 h-4 p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                type="date"
+                v-if="isEdit"
+                id="lastday"
+                name="lastday"
+                v-model="lastdayEnter"
+              />
+              <span v-else class="text-pink-500">{{ icecream.lastday }} </span>
+            </p>
             <!--Topping-->
             <div class="flex justify-start">
-              <p class="text-black">Topping : </p>
+              <p class="text-black">Topping :</p>
               <span v-if="isEdit">
                 <div
                   class="mx-2 flex text-blue-800 flex flex-row grid grid-flow-col grid-cols-2 grid-rows-4 md:grid md:grid-flow-col md:grid-cols-4 md:grid-rows-2 gap-2 "
@@ -131,12 +152,21 @@
                   </option>
                 </div>
               </span>
-              <span v-else class="text-pink-500">{{ icecream.topping }}</span>
-            </div>
+            
+                <span v-else class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold  rounded">
+                  <span class="  bg-blue-800  px-4 ml-4 mr-2 rounded"
+                  v-for="topping in icecream.topping"
+                  value="topping"
+                  id="topping"
+                  :key="topping"
+                  name="topping"> {{ topping}} </span>
+                </span>
           </div>
+          
 
           <div class="flex flex-row-reverse">
             <button
+              v-if="isEdit"
               class="ml-4 justify-center btn btn-primary bg-gradient-to-b from-green-500 to-green-800 hover:from-blue-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
               type="button "
               @click.prevent="submit(icecream)"
@@ -144,6 +174,7 @@
               Save
             </button>
             <button
+              v-if="!isEdit"
               class="justify-center btn btn-primary bg-gradient-to-b from-blue-500 to-blue-800 hover:from-pink-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
               type="button "
               @click="edit"
@@ -152,6 +183,7 @@
             </button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -172,8 +204,10 @@ export default {
       describeEnter: "",
       sizeEnter: "",
       brandEnter: "",
+      lastdayEnter: "",
       toppingEnter: "",
       isEdit: false,
+      sizeselect: "",
     };
   },
   props: ["icecream"],
@@ -204,6 +238,7 @@ export default {
       this.sizeEnter = this.icecream.size;
       this.brandEnter = this.icecream.brand;
       this.toppingEnter = this.icecream.topping;
+      this.lastdayEnter = this.icecream.lastday;
     },
     submit(icecream) {
       if (this.isEdit) {
@@ -214,6 +249,7 @@ export default {
           describe: this.describeEnter,
           size: this.sizeEnter,
           brand: this.brandEnter,
+          lastday: this.lastdayEnter,
           topping: this.toppingEnter,
           id: icecream.id,
         });
