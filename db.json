@@ -23,7 +23,8 @@
       "describe": "Chocolate ice cream, mixed with chocolate traffles",
       "size": [
         "S",
-        "M"
+        "M",
+        "L"
       ],
       "brand": "Swensens",
       "topping": [
@@ -41,7 +42,8 @@
       "describe": "Chocolate ice cream, mixed with chocolate traffles",
       "size": [
         "M",
-        "S"
+        "S",
+        "L"
       ],
       "brand": "Swensens",
       "topping": [

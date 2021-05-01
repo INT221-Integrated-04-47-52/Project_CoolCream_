@@ -1,10 +1,7 @@
 <template>
-
 <div class="flex flex-row flex-wrap">
-
 <div v-for="icecream in icecreams" :key="icecream.id" > 
   <blog-icecream @icecream-popup="toggleVisibility" :icecream="icecream" @delete="deleteicecream" ></blog-icecream></div> 
-
 </div>  
 <div class="details" v-show="isVisible">
 <popup @icecream-submit="edit" @close-popup="closePopup" :icecream="icecreamPopup"></popup>
@@ -32,7 +29,8 @@ export default {
   methods:{  
    async edit(icecream){
       try {
-        const res = await fetch(`${this.url}/${icecream.id}`, {
+        const res 
+        = await fetch(`${this.url}/${icecream.id}`, {
           method: 'PUT',
           headers: {
             'content-type': 'application/json'

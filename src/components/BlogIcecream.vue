@@ -11,6 +11,10 @@
       class="text-gray-600 font-sans text-xl
   py-2 font-bold mb-2 "
       >{{ icecream.name }}</span>
+      <span
+      class="text-gray-600 font-sans text-xl
+  py-2 font-bold mb-2 "
+      >{{ icecream.price }}</span>
     <br />
     <button class=" btn btn-primary mt-2 bg-gradient-to-r from-green-500 
   to-green-800 hover:from-blue-500 hover:to-pink-500 text-white font-bold 
@@ -41,7 +45,6 @@ export default {
   name: "BlogIcecream",
   props: ["icecream"],
   icecreams: Array,
-  
   methods: {
     deleteList(id) {
       this.$emit("delete", id);

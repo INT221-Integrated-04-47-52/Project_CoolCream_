@@ -4,21 +4,18 @@
   >
     <!-- div card popup -->
     <div class="mx-16 w-screen h-auto p-5 bg-white rounded-3xl shadow-lg">
-      <div
-        class="cursor-pointer focus:ring transform transition duration-300 ease-out flex flex-row-reverse"
-        @click="close"
-      >
+      <div class="cursor-pointer focus:ring transform transition duration-300 ease-out flex flex-row-reverse"
+        @click="close">
         <span class="material-icons"> close </span>
       </div>
 
       <!-- Product image -->
       <div class="space-y-4 md:space-x-4 md:grid md:grid-cols-3">
-        <div
-          class="bg-green-200 mt-5 place-items-center md:mt-0 md:justify-self-center"
+        <div class="bg-green-200 mt-5 place-items-center md:mt-0 md:justify-self-center"
         >
           <img
             class="w-72 h-72 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
-            :src="icecream.image"
+            :src="icecream.image" alt="imagesProduct"
           />
         </div>
 

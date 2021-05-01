@@ -8,44 +8,39 @@
         >
           Add icecreams to store
         </label>
-        <form @submit="onFormSubmit">
-          <div class="form-group">
-            <label
-              class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
-              htmlFor="name">name</label>
+        <form @submit.prevent="submitSurvey">
+          <div class="form-control">
+            <label  class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
+             for="name">Name</label>
             <input
               class="shadow text-left justify-start appearance-none border rounded w-full p-3 
               text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 
               ease-in-out" type="text"
               placeholder="input your name.."
-              :class="getInputClass('name')"
               id="name"
               name="name"
-              v-model="formElements.name.value"
-              @keyup="onFormChange($event)"/>
-            <div class="invalid-feedback">
-              {{ getErrorMessage("name") }}
-            </div>
+              v-model.trim="nameEnter"
+        />
+          
           </div>
+       
 
-          <div class="form-group">
+          <div class="form-control">
             <label
               class="text-left block mt-4 text-blue-600 font-bold items-start"
               htmlFor="price">price</label>
             <input
               class="mt-2 shadow text-left appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out invalid-feedback"
               type="price"
-              :class="getInputClass('price')"
+             
               id="price"
               name="price"
-              v-model="formElements.price.value"
-              @keyup="onFormChange($event)"
+              v-model.trim="priceEnter"
+          
               placeholder="Input your price.."/>
-            <div>
-              {{ getErrorMessage("price") }}
-            </div>
+       
           </div>
-          <div class="form-group">
+          <div class="form-control">
             <label
               class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
               htmlFor="describe"
@@ -54,18 +49,16 @@
               class="shadow text-left justify-start appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
               type="text"
               placeholder="input your describe.."
-              :class="getInputClass('describe')"
+     
               id="describe"
               name="describe"
-              v-model="formElements.describe.value"
-              @keyup="onFormChange($event)"/>
-            <div class="invalid-feedback">
-              {{ getErrorMessage("describe") }}
-            </div>
+              v-model.trim="describeEnter"
+           />
+
           </div>
           <!-- Brand -->
 
-          <div class="form-group">
+          <div class="form-control">
             <label
               class="w-2/11 text-left block text-blue-600 py-2 font-bold mt-2 items-start"
               htmlFor="brand"
@@ -76,71 +69,60 @@
                 class="border-2 w-2/12 p-2 transform transition duration-300 ease-in-out"
                 id="brand"
                 name="banlist"
-                v-model="formElements.brand.value"
-                :class="getInputClass('brand')"
-                @change="sendBrand()">
+                v-model="brandEnter">
                 <option v-for="ban in brandArray" :key="ban.id">
-                  {{ ban.name }}
+                  {{ ban.brandName }}
                 </option>
               </select>
             </div>
-            <div></div>
-            <div class="invalid-feedback">
-              {{ getErrorMessage("brand") }}
-            </div>
+            <div>{{brandEnter}}</div>
+
           </div>
 
           <!-- Size -->
-          <div class="form-group">
+          <div class="form-control">
             <div class="text-blue-600 flex flex-row -mt-2">
               <label
                 class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
                 htmlFor="size">Size</label>
             </div>
             <div class="text-green-600 flex flex-row -mt-2">
-              <option
+             
+              <option 
                 v-for="siz in sizeArray"
-                value="siz"
-                id="size"
-                name="sizelist"
+ 
                 @click="selectSize(siz)"
                 :class="{
-                  'bg-green-400 text-white': formElements.size.value.includes(siz),
+                  'bg-green-400 text-white': sizeEnter==siz,
                 }"
                 :key="siz.id"
-                @keyup="onFormChange($event)"
+             
                 class="mr-2 text-center w-16 border-green-400 mt-4 border-2 hover:bg-green-400 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
               >
-                {{ siz.name }}
+                {{ siz.sizeType }}
               </option>
-
-              <!--&getInputClass('size')-->
+          
+{{sizeEnter}}
             </div>
 
-            <div class="invalid-feedback">
-              {{ getErrorMessage("size") }}
-            </div>
+
           </div>
           <!--Lastday-->
-          <div class="form-group">
+          <div class="form-control">
             <label
               class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
               htmlFor="lastday">Last day of sale</label>
             <input
               class="shadow text-left justify-start appearance-none border rounded w-2/12 p-3 text-gray-700 leading-tight focus:ring"
               type="date"
-              :class="getInputClass('lastday')"
               id="lastday"
               name="lastday"
-              v-model="formElements.lastday.value"
-              @keyup="onFormChange($event)"/>
+              v-model="lastdayEnter"
+           />
 
-            <div class="invalid-feedback">
-              {{ getErrorMessage("lastday") }}
-            </div>
           </div>
           <!-- Topping-->
-          <div class="form-group">
+          <div class="form-control">
             <div class="text-pink-400 flex flex-col -mt-2">
               <div>
                 <label
@@ -148,29 +130,29 @@
                   htmlFor="size">Topping</label>
               </div>
               <div class="flex flex-row">
-                <option
-                  v-for="top in toppingArray"
-                  value="top.name"
+                <option v-for="top in toppingArray"
+                  value="top.toppingName"
                   id="topping"
                   name="toppinglist"
-                  @click="selectTopping(top.name)"
+                  @click="selectTopping(top.toppingName)"
                   :class="{
-                    'bg-pink-400 text-white': formElements.topping.value.includes(
-                      top.name
+                    'bg-pink-400 text-white': toppingEnter.includes(
+                      top.toppingName
                     ),
                   }"
                   :key="top.id"
-                  @keyup="onFormChange($event)"
+     
                   class="mr-2 text-center w-36 border-pink-400 mt-4 border-2 hover:bg-pink-400 hover:text-white font-bold py-0.5 px-auto rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
                 >
-                  {{ top.name }}
+                  {{ top.toppingName }}
                 </option>
               </div>
               <div class="flex flex-row">
                 <div class="mr-11" v-for="top in toppingArray" :key="top.id">
-                  <img :src="top.image" />
+                  <img :src="top.toppingImage" alt="imagesTopping"/>
                 </div>
               </div>
+              {{toppingEnter}}
             </div>
           </div>
 
@@ -185,9 +167,13 @@
             <button
               type="submit"
               class="mt-4 bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary"
-              :disabled="!formValid">
+             >
               Submit
             </button>
+            <p
+            v-if="invalidInput" class="text-center text-red-600 m-5"
+          >*** One or more input fields are invalid *** <br>- Please check your provided data -</p>
+          <p v-if="error">{{ error }}</p>
           </div>
         </form>
       </div>
@@ -199,6 +185,8 @@ export default {
   name: "RegisterForm",
   data() {
     return {
+      invalidInput: false,
+      error: null,
       ban: "",
       brandArray: "",
       siz: "",
@@ -206,107 +194,30 @@ export default {
       top: "",
       toppingArray: "",
       image: null,
-      formElements: {
-        name: {
-          type: "text",
-          value: null,
-          validator: {
-            required: true,
-            minLength: 1,
-            maxLength: 50,
-          },
-          touched: false,
-          error: { status: true, message: "" },
-        },
-        describe: {
-          type: "text",
-          value: null,
-          validator: {
-            required: true,
-            minLength: 1,
-            maxLength: 200,
-          },
-          touched: false,
-          error: { status: true, message: "" },
-        },
-        brand: {
-          type: "text",
-          value: "",
-          validator: {
-            required: true,
-            minLength: 1,
-            maxLength: 200,
-          },
-          touched: false,
-          error: { status: true, message: "" },
-        },
-        price: {
-          type: "price",
-          value: null,
-          validator: {
-            required: true,
-            minLength: 1,
-            maxLength: 4,
-          },
-          touched: false,
-          error: { status: true, message: "" },
-        },
-        size: {
-          type: "text",
-          value: [],
-          validator: {
-            required: true,
-            minLength: 1,
-            maxLength: 200,
-          },
-          touched: false,
-          error: { status: true, message: "" },
-        },
-        lastday: {
-          type: "text",
-          value: null,
-          validator: {
-            required: true,
-            minLength: 1,
-            maxLength: 4,
-          },
-          touched: false,
-          error: { status: true, message: "" },
-        },
-        topping: {
-          type: "text",
-          value: [],
-          validator: {
-            required: true,
-            minLength: 1,
-            maxLength: 200,
-          },
-          touched: false,
-          error: { status: true, message: "" },
-        },
-      },
-      formValid: false,
+      nameEnter: "",
+      describeEnter:"",
+      brandEnter:"",
+      priceEnter:"",
+      sizeEnter:"",
+      lastdayEnter:"",
+      toppingEnter:[],
     };
   },
 
   methods: {
     selectTopping(topping) {
-      if (this.formElements.topping.value.includes(topping)) {
-        this.formElements.topping.value = this.formElements.topping.value.filter(
+      if (this.toppingEnter.includes(topping)) {
+        this.toppingEnter = this.toppingEnter.filter(
           (t) => t !== topping
         );
       } else {
-        this.formElements.topping.value.push(topping);
+        this.toppingEnter.push(topping);
       }
     },
     selectSize(size) {
-      if (this.formElements.size.value.includes(size)) {
-        this.formElements.size.value = this.formElements.size.value.filter(
-          (s) => s !== size
-        );
-      } else {
-        this.formElements.size.value.push(size);
-      }
+    
+        this.sizeEnter = size;
+
     },
     uploadImg(event) {
       const file = event.target.files[0];
@@ -316,102 +227,64 @@ export default {
       };
       reader.readAsDataURL(file);
     },
-    onFormChange(event) {
-      const name = event.target.name;
-      const value = event.target.value;
-      let updatedForm = { ...this.formElements };
-      updatedForm[name].value = value;
-      updatedForm[name].touched = true;
-      const validatorObject = this.checkValidator(value, updatedForm[name].validator);
-      updatedForm[name].error = {
-        status: validatorObject.status,
-        message: validatorObject.message,
-      };
-      let formStatus = true;
-      for (let name in updatedForm) {
-        if (updatedForm[name].validator.required === true) {
-          formStatus = !updatedForm[name].error.status && formStatus;
-        }
+    submitSurvey() {
+      if (this.nameEnter=== "" || this.describeEnter=== "" || this.priceEnter=== "" ||
+      this.brandEnter=== "" || this.sizeEnter=== [] || this.toppingEnter=== [] ||
+      this.lastdayEnter=== "" 
+       ) {
+        this.invalidInput = true;
+        return;
       }
-      this.formElements = updatedForm;
-      this.formValid = formStatus;
-    },
-    checkValidator(value, rule) {
-      let valid = true;
-      let message = "";
-      if (value.trim().length === 0 && rule.required) {
-        valid = false;
-        message = "Required";
-      }
-      if (value.length < rule.minLength && valid) {
-        valid = false;
-        message = `Less than ${rule.minLength} Letters`;
-      }
-      if (value.length > rule.maxLength && valid) {
-        valid = false;
-        message = `More than ${rule.maxLength} Letters`;
-      }
-      if (rule.pattern === "price" && valid) {
-        if (/^\d+(,\d{3})*(\.\d{1,2})?$/.test(value) === false) {
-          valid = false;
-          message = "Incorrect price";
-        }
-      }
-      return { status: !valid, message: message };
-    },
-    getInputClass(name) {
-      const elementErrorStatus = this.formElements[name].error.status;
-      if (!this.formElements[name].touched) {
-        return ["form-control"];
-      } else {
-        return elementErrorStatus && this.formElements[name].touched
-          ? ["form-control", "is-invalid"]
-          : ["form-control", "is-valid"];
-      }
-    },
-    getErrorMessage(name) {
-      return this.formElements[name].error.message;
-    },
-    async onFormSubmit() {
-      const formData = {};
-      for (let name in this.formElements) {
-        formData[name] = this.formElements[name].value;
-      }
-      //console.log(formData);
-
-      try {
-        await fetch("http://localhost:5001/icecreams", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            image: this.image,
-            name: formData.name,
-            price: formData.price,
-            describe: formData.describe,
-            size: formData.size,
-            brand: formData.brand,
-            lastday: formData.lastday,
-            topping: formData.topping,
-          }),
+      this.invalidInput = false;   
+      this.error = null;
+      fetch('http://localhost:5001/icecreams', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          image: this.image,
+          name: this.nameEnter,
+          price: this.priceEnter,
+          describe: this.describeEnter,
+          size: this.sizeEnter,
+          brand: this.brandEnter,
+          lastday: this.lastdayEnter,
+          topping: this.toppingEnter,
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            // ...
+          } else {
+            throw new Error('Could not save data!');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = error.message;
         });
-      } catch (error) {
-        console.log(`Could not save! ${error}`);
-      }
-    },
+        this.image = "";
+          this.nameEnter= "";
+          this.priceEnter= "";
+          this.describeEnter= "";
+          this.sizeEnter= [];
+          this.brandEnter= "";
+           this.lastdayEnter= "";
+           this.toppingEnter= [];
+},
     async fetchSize() {
-      const res = await fetch("http://localhost:5001/size");
+      const res = await fetch("http://localhost:6001/size");
       const data = await res.json();
       return data;
     },
     async fetchBrand() {
-      const res = await fetch("http://localhost:5001/brand");
+      const res = await fetch("http://localhost:6001/brand");
       const data = await res.json();
       return data;
     },
     async fetchTopping() {
-      const res = await fetch("http://localhost:5001/topping");
+      const res = await fetch("http://localhost:6001/topping");
       const data = await res.json();
       return data;
     },
