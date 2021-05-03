@@ -4,7 +4,7 @@
   >
     <img
       class="ml-12 w-72 h-72 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
-      :src="icecream.image"
+      :src="icecream.image" alt="k"
     />
 
     <span
