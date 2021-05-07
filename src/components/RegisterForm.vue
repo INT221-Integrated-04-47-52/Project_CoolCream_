@@ -23,16 +23,15 @@
         />
           
           </div>
-       
+       <div class="text-red-600">{{validator.name.error.message}}</div>
 
           <div class="form-control">
             <label
               class="text-left block mt-4 text-blue-600 font-bold items-start"
-              htmlFor="price">price</label>
+              htmlFor="price">Price</label>
             <input
               class="mt-2 shadow text-left appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out invalid-feedback"
-              type="price"
-             
+              type="number"
               id="price"
               name="price"
               v-model.trim="priceEnter"
@@ -40,22 +39,24 @@
               placeholder="Input your price.."/>
        
           </div>
+          <div class="text-red-600">{{validator.price.error.message}}</div>
           <div class="form-control">
             <label
               class="text-left block text-blue-600 py-2 font-bold mt-2 items-start"
-              htmlFor="describe"
-              >Describe</label>
+              htmlFor="description"
+              >Description</label>
             <input
               class="shadow text-left justify-start appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
               type="text"
-              placeholder="input your describe.."
+              placeholder="input your description.."
      
-              id="describe"
-              name="describe"
-              v-model.trim="describeEnter"
+              id="description"
+              name="description"
+              v-model.trim="descriptionEnter"
            />
 
           </div>
+          <div class="text-red-600">{{validator.description.error.message}}</div>
           <!-- Brand -->
 
           <div class="form-control">
@@ -69,43 +70,40 @@
                 class="border-2 w-2/12 p-2 transform transition duration-300 ease-in-out"
                 id="brand"
                 name="banlist"
+                
                 v-model="brandEnter">
-                <option v-for="ban in brandArray" :key="ban.id">
-                  {{ ban.brandName }}
+                <option :value="brand" v-for="brand in brandArray" :key="brand.brandId">
+                  {{ brand.brandName }}
                 </option>
               </select>
             </div>
             <div>{{brandEnter}}</div>
 
           </div>
-
+          <div class="text-red-600">{{validator.brand.error.message}}</div>
           <!-- Size -->
           <div class="form-control">
             <div class="text-blue-600 flex flex-row -mt-2">
-              <label
-                class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
+              <label class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
                 htmlFor="size">Size</label>
             </div>
             <div class="text-green-600 flex flex-row -mt-2">
              
               <option 
-                v-for="siz in sizeArray"
+                v-for="size in sizeArray"
  
-                @click="selectSize(siz)"
+                @click="selectSize(size)"
                 :class="{
-                  'bg-green-400 text-white': sizeEnter==siz,
+                  'bg-green-400 text-white': sizeEnter==size,
                 }"
-                :key="siz.id"
+                :key="size.id"
              
-                class="mr-2 text-center w-16 border-green-400 mt-4 border-2 hover:bg-green-400 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
-              >
-                {{ siz.sizeType }}
+                class="mr-2 text-center w-16 border-green-400 mt-4 border-2 hover:bg-green-400 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer">
+                {{ size.sizeType }}
               </option>
-          
-{{sizeEnter}}
             </div>
 
-
+            <div class="text-red-600">{{validator.size.error.message}}</div>
           </div>
           <!--Lastday-->
           <div class="form-control">
@@ -117,10 +115,10 @@
               type="date"
               id="lastday"
               name="lastday"
-              v-model="lastdayEnter"
-           />
-
+              v-model="lastdayEnter"/>
+              <div class="text-red-600">{{validator.lastday.error.message}}</div>
           </div>
+       
           <!-- Topping-->
           <div class="form-control">
             <div class="text-pink-400 flex flex-col -mt-2">
@@ -129,33 +127,36 @@
                   class="text-left block text-blue-600 pt-2 font-bold mt-2 items-start"
                   htmlFor="size">Topping</label>
               </div>
-              <div class="flex flex-row">
-                <option v-for="top in toppingArray"
-                  value="top.toppingName"
+              
+              <div class="flex md:flex-row  ">
+                <option v-for="topping in toppingArray"
+                  value="topping"
                   id="topping"
                   name="toppinglist"
-                  @click="selectTopping(top.toppingName)"
+                  @click="selectTopping(topping)"
                   :class="{
-                    'bg-pink-400 text-white': toppingEnter.includes(
-                      top.toppingName
+                    'bg-pink-400 text-white': toppingEnter.map(t=>t.toppingId).includes( 
+                       topping.toppingId
                     ),
                   }"
-                  :key="top.id"
+                  :key="topping.toppingId"
      
                   class="mr-2 text-center w-36 border-pink-400 mt-4 border-2 hover:bg-pink-400 hover:text-white font-bold py-0.5 px-auto rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
                 >
-                  {{ top.toppingName }}
+                  {{ topping.toppingName }}
+                
                 </option>
+               
               </div>
               <div class="flex flex-row">
-                <div class="mr-11" v-for="top in toppingArray" :key="top.id">
-                  <img :src="top.toppingImage" alt="imagesTopping"/>
+                <div class="mr-11" v-for="topping in toppingArray" :key="topping.toppingId">
+                  <img :src="topping.toppingImage" alt="imagesTopping"/>
                 </div>
               </div>
-              {{toppingEnter}}
+
             </div>
           </div>
-
+          <div class="text-red-600">{{validator.topping.error.message}}</div>
           <div>
             <label
               class="text-left block mt-4 text-blue-600 font-bold items-start"
@@ -163,6 +164,7 @@
 
             <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
           </div>
+          <div class="text-red-600">{{validator.image.error.message}}</div>
           <div class="text-center">
             <button
               type="submit"
@@ -170,9 +172,11 @@
              >
               Submit
             </button>
-            <p
-            v-if="invalidInput" class="text-center text-red-600 m-5"
-          >*** One or more input fields are invalid *** <br>- Please check your provided data -</p>
+            <p v-if="invalidInput" class="text-center text-red-600 m-5"
+          >*** One or more input fields are invalid *** 
+
+
+          <br>- Please check your provided data -</p>
           <p v-if="error">{{ error }}</p>
           </div>
         </form>
@@ -185,6 +189,7 @@ export default {
   name: "RegisterForm",
   data() {
     return {
+      imageName:"",
       invalidInput: false,
       error: null,
       ban: "",
@@ -195,16 +200,51 @@ export default {
       toppingArray: "",
       image: null,
       nameEnter: "",
-      describeEnter:"",
+      descriptionEnter:"",
       brandEnter:"",
-      priceEnter:"",
+      priceEnter: "",
       sizeEnter:"",
       lastdayEnter:"",
       toppingEnter:[],
-    };
+      validator:{
+        name:{
+          required: true,
+          minLength:5,
+          maxLength:15,
+          error:{status:true, message:""}},
+        description:{
+          required: true,
+          minLength:5,
+          maxLength:200,
+          error:{status:true, message:""}},
+        brand:{
+          required: true,
+          error:{status:true, message:""}},
+        price:{
+          required: true,
+          minLength:0,
+          maxLength:5,
+          error:{status:true, message:""}},
+        size:{
+          required: true,
+          error:{status:true, message:""}},
+        lastday:{
+          required: true,
+          error:{status:true, message:""}},
+        topping:{
+          required: true,
+          error:{status:true, message:""}},
+        image:{
+          required: true,
+          error:{status:true, message:""}},
+        }
+
+      
+    }
   },
 
-  methods: {
+  methods: {    
+
     selectTopping(topping) {
       if (this.toppingEnter.includes(topping)) {
         this.toppingEnter = this.toppingEnter.filter(
@@ -215,9 +255,7 @@ export default {
       }
     },
     selectSize(size) {
-    
         this.sizeEnter = size;
-
     },
     uploadImg(event) {
       const file = event.target.files[0];
@@ -225,32 +263,105 @@ export default {
       reader.onload = (event) => {
         this.image = event.target.result;
       };
+
       reader.readAsDataURL(file);
+      this.imageName=file.name;
+    },    
+    checkError(){
+ 
+  if(this.nameEnter=== ""){
+      this.validator.name.error.message = "***Please Input your name***";
+  }
+  if(this.nameEnter.length < this.validator.name.minLength){
+    this.validator.name.error.message = "***Please input name more than " 
+    + this.validator.name.minLength +"***"
+  }
+  if(this.nameEnter.length > this.validator.name.maxLength){
+    this.validator.name.error.message = "***Please input name less than " 
+    + this.validator.name.maxLength +"***"
+  }
+  if(this.descriptionEnter=== ""){
+      this.validator.description.error.message = "***Please Input your description***"
+  }  
+  if(this.descriptionEnter.length < this.validator.description.minLength){
+    this.validator.description.error.message = "***Plese input description more than " 
+    + this.validator.description.minLength +"***"
+  }
+  if(this.descriptionEnter.length > this.validator.description.maxLength){
+    this.validator.description.error.message = "***Plese input description less than " 
+    + this.validator.description.maxLength +"***"
+  }
+  if(this.priceEnter === ""){
+      this.validator.price.error.message = "***Please Input your price***"
+  }  
+  if(this.priceEnter.length < this.validator.price.minLength){
+    this.validator.price.error.message = "***Plese input price more than " 
+    + this.validator.price.minLength +"***"
+  }
+  if(this.priceEnter.length > this.validator.price.maxLength){
+    this.validator.price.error.message = "***Plese input price less than " 
+    + this.validator.price.maxLength +"***"
+  }
+  if(this.brandEnter=== ""){
+      this.validator.brand.error.message = "***Please Input your brand***"
+  }
+
+  if(this.sizeEnter=== ""){
+      this.validator.size.error.message = "***Please Input your size***"
+  }  
+  
+  if(this.lastdayEnter=== ""){
+      this.validator.lastday.error.message = "***Please Input your lastday***"
+  }  
+  
+  if(this.toppingEnter=== ""){
+      this.validator.topping.error.message = "***Please Input your topping***"
+  }  
+  if(this.imageName=== ""){
+      this.validator.image.error.message = "***Please Add your image***"
+  }  
+  return  this.nameEnter==="" || this.descriptionEnter=== "" ||
+  this.priceEnter=== "" ||
+  this.brandEnter=== ""  ||
+  this.sizeEnter=== "" ||
+  this.toppingEnter=== [] ||
+  this.lastdayEnter=== ""
     },
+
     submitSurvey() {
-      if (this.nameEnter=== "" || this.describeEnter=== "" || this.priceEnter=== "" ||
-      this.brandEnter=== "" || this.sizeEnter=== [] || this.toppingEnter=== [] ||
-      this.lastdayEnter=== "" 
-       ) {
+      /* */
+      if (this.checkError()) {
         this.invalidInput = true;
         return;
       }
+      console.log({
+        /*  image: this.image*/
+          name: this.nameEnter,
+          price: this.priceEnter,
+          description: this.descriptionEnter,
+          size: this.sizeEnter,
+          brand: this.brandEnter,
+          lastday: this.lastdayEnter,
+          topping: this.toppingEnter,
+
+        })
       this.invalidInput = false;   
       this.error = null;
-      fetch('http://localhost:5001/icecreams', {
+      fetch('http://localhost:6001/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          image: this.image,
-          name: this.nameEnter,
+          image: this.imageName,
+          icecreamName : this.nameEnter,
           price: this.priceEnter,
-          describe: this.describeEnter,
+          description: this.descriptionEnter,
           size: this.sizeEnter,
           brand: this.brandEnter,
           lastday: this.lastdayEnter,
           topping: this.toppingEnter,
+          
         }),
       })
         .then((response) => {
@@ -264,11 +375,11 @@ export default {
           console.log(error);
           this.error = error.message;
         });
-        this.image = "";
+          this.image = null;
           this.nameEnter= "";
           this.priceEnter= "";
-          this.describeEnter= "";
-          this.sizeEnter= [];
+          this.descriptionEnter= "";
+          this.sizeEnter= "";
           this.brandEnter= "";
            this.lastdayEnter= "";
            this.toppingEnter= [];
@@ -279,6 +390,7 @@ export default {
       return data;
     },
     async fetchBrand() {
+     
       const res = await fetch("http://localhost:6001/brand");
       const data = await res.json();
       return data;
@@ -293,6 +405,7 @@ export default {
     this.sizeArray = await this.fetchSize();
     this.brandArray = await this.fetchBrand();
     this.toppingArray = await this.fetchTopping();
+    console.log(this.brandArray)
   },
 };
 </script>

@@ -11,10 +11,9 @@
 
       <!-- Product image -->
       <div class="space-y-4 md:space-x-4 md:grid md:grid-cols-3">
-        <div class="bg-green-200 mt-5 place-items-center md:mt-0 md:justify-self-center"
+        <div class=" mt-5 place-items-center md:mt-0 md:justify-self-center"
         >
-          <img
-            class="w-72 h-72 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
+          <img class="w-72 h-72 transform rounded-full hover:rotate-6 transition duration-700 ease-in-out "
             :src="icecream.image" alt="imagesProduct"
           />
         </div>
@@ -34,7 +33,7 @@
                 name="name"
                 v-model="nameEnter"
               />
-              <span v-else class="text-pink-500"> {{ icecream.name }} </span>
+              <span v-else class="text-pink-500"> {{ icecream.icecreamName }} </span>
             </p>
 
             <p class="text-black">
@@ -52,17 +51,17 @@
             </p>
 
             <p class="text-black">
-              Describe :
+              description :
               <textarea
                 class="shadow text-left justify-start appearance-none border h-24 rounded w-1/2 p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="text"
-                placeholder="input product describe.."
+                placeholder="input product description.."
                 v-if="isEdit"
-                id="describe"
-                name="describe"
-                v-model="describeEnter"
+                id="description"
+                name="description"
+                v-model="descriptionEnter"
               />
-              <span v-else class="text-pink-500">{{ icecream.describe }}</span>
+              <span v-else class="text-pink-500">{{ icecream.description }}</span>
             </p>
 
             <p class="text-black">
@@ -74,11 +73,11 @@
                 v-model="brandEnter"
                 class="shadow rounded w-48 h-7"
               >
-                <option v-for="ban in brandArray" :key="ban.id">
-                  {{ ban.name }}
+                <option v-for="brand in brandArray" :key="brand.brandId">
+                  {{ brand.brandName }}
                 </option>
               </select>
-              <span v-else class="text-pink-500">{{ icecream.brand }}</span>
+              <span v-else class="text-pink-500">{{ icecream.brand.brandName }}</span>
             </p>
 
             <!--Size-->
@@ -89,18 +88,18 @@
                   class="mx-2 flex text-pink-400 flex flex-row md:grid md:grid-flow-col md:grid-cols-4 gap-2"
                 >
                   <option
-                    v-for="siz in sizeArray"
+                    v-for="size in sizeArray"
                     value="siz.name"
                     id="size"
-                    :key="siz.id"
+                    :key="size.id"
                     name="size"
-                    @click="selectSize(siz.name)"
+                    @click="selectSize(size.name)"
                     :class="{
-                      'bg-blue-800 text-white': sizeEnter.includes(siz.name),
+                      'bg-blue-800 text-white': sizeEnter.includes(size.name),
                     }"
                     class="text-center w-16 border-blue-800 border-2 hover:bg-blue-800 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
                   >
-                    {{ siz.name }}
+                    {{ size.name }}
                   </option>
                 </div>
               </span> 
@@ -110,7 +109,7 @@
                 value="size"
                 id="size"
                 :key="size"
-                name="size"> {{ size}} </span>
+                name="size"> {{ size.sizeName}} </span>
               </span>
             </div>
             <!--lastday-->
@@ -134,18 +133,18 @@
                   class="mx-2 flex text-blue-800 flex flex-row grid grid-flow-col grid-cols-2 grid-rows-4 md:grid md:grid-flow-col md:grid-cols-4 md:grid-rows-2 gap-2 "
                 >
                   <option
-                    v-for="top in toppingArray"
-                    value="top.name"
+                    v-for="topping in toppingArray"
+                    value="topping"
                     id="topping"
                     name="topping"
-                    @click="selectTopping(top.name)"
+                    @click="selectTopping(topping)"
                     :class="{
-                      'bg-blue-800 text-white': toppingEnter.includes(top.name),
+                      'bg-blue-800 text-white': toppingEnter.includes(topping),
                     }"
-                    :key="top.id"
+                    :key="topping.id"
                     class="text-center w-32 border-blue-800 border-2 hover:bg-blue-800 hover:text-white font-bold py-0.5 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
                   >
-                    {{ top.name }}
+                    {{ topping.name }}
                   </option>
                 </div>
               </span>
@@ -156,7 +155,7 @@
                   value="topping"
                   id="topping"
                   :key="topping"
-                  name="topping"> {{ topping}} </span>
+                  name="topping"> {{ topping.toppingName}} </span>
                 </span>
           </div>
           
@@ -174,8 +173,7 @@
               v-if="!isEdit"
               class="justify-center btn btn-primary bg-gradient-to-b from-blue-500 to-blue-800 hover:from-pink-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
               type="button "
-              @click="edit"
-            >
+              @click="edit">
               Edit
             </button>
           </div>
@@ -190,21 +188,21 @@
 export default {
   data() {
     return {
-      siz: "",
-      sizeArray: [],
-      ban: "",
+      size: "",
+      sizeArray: "",
+      brand: "",
       brandArray: [],
-      top: "",
+      topping: "",
       toppingArray: [],
       nameEnter: "",
       priceEnter: "",
-      describeEnter: "",
+      descriptionEnter: "",
       sizeEnter: "",
       brandEnter: "",
       lastdayEnter: "",
-      toppingEnter: "",
+      toppingEnter: [],
       isEdit: false,
-      sizeselect: "",
+    
     };
   },
   props: ["icecream"],
@@ -229,9 +227,9 @@ export default {
     },
     edit() {
       this.isEdit = true;
-      this.nameEnter = this.icecream.name;
+      this.nameEnter = this.icecream.icecreamName;
       this.priceEnter = this.icecream.price;
-      this.describeEnter = this.icecream.describe;
+      this.descriptionEnter = this.icecream.description;
       this.sizeEnter = this.icecream.size;
       this.brandEnter = this.icecream.brand;
       this.toppingEnter = this.icecream.topping;
@@ -243,28 +241,28 @@ export default {
           image: icecream.image,
           name: this.nameEnter,
           price: this.priceEnter,
-          describe: this.describeEnter,
+          description: this.descriptionEnter,
           size: this.sizeEnter,
           brand: this.brandEnter,
           lastday: this.lastdayEnter,
           topping: this.toppingEnter,
-          id: icecream.id,
+          id: icecream.icecreamId,
         });
         this.close();
       }
     },
     async fetchTopping() {
-      const res = await fetch("http://localhost:5001/topping");
+      const res = await fetch("http://localhost:6001/topping");
       const data = await res.json();
       return data;
     },
     async fetchSize() {
-      const res = await fetch("http://localhost:5001/size");
+      const res = await fetch("http://localhost:6001/size");
       const data = await res.json();
       return data;
     },
     async fetchBrand() {
-      const res = await fetch("http://localhost:5001/brand");
+      const res = await fetch("http://localhost:6001/brand");
       const data = await res.json();
       return data;
     },

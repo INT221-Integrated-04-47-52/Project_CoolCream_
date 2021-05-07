@@ -1,7 +1,7 @@
 <template>
 <div class="flex flex-row flex-wrap">
-<div v-for="icecream in icecreams" :key="icecream.id" > 
-  <blog-icecream @icecream-popup="toggleVisibility" :icecream="icecream" @delete="deleteicecream" ></blog-icecream></div> 
+<div v-for="icecream in icecreams" :key="icecream.icecreamId" > 
+  <base-icecream @icecream-popup="toggleVisibility" :icecream="icecream" @delete="deleteicecream"></base-icecream></div> 
 </div>  
 <div class="details" v-show="isVisible">
 <popup @icecream-submit="edit" @close-popup="closePopup" :icecream="icecreamPopup"></popup>
@@ -11,11 +11,11 @@
 
  
 
-import BlogIcecream from './BlogIcecream.vue'
+import BaseIcecream from '../blogs/BaseIcecream.vue'
 import Popup from './Popup.vue'
 export default {
   components: {
-   BlogIcecream,Popup
+   BaseIcecream,Popup
   },
   data(){
     return {
@@ -23,23 +23,23 @@ export default {
       isVisible: false,
       ifEdit: false,
      icecreams: [],
-     url: "http://localhost:5001/icecreams"
+ 
     }
   },
   methods:{  
    async edit(icecream){
       try {
         const res 
-        = await fetch(`${this.url}/${icecream.id}`, {
+        = await fetch(`${this.url}/${icecream.icecreamId}`, {
           method: 'PUT',
           headers: {
             'content-type': 'application/json'
           },
           body: JSON.stringify({
             image: icecream.image,
-            name:  icecream.name,
+            name:  icecream.icecreamName,
             price:  icecream.price,
-            describe:  icecream.describe,
+            description:  icecream.description,
             size: icecream.size,
             brand: icecream.brand,
             topping: icecream.topping,
@@ -48,12 +48,12 @@ export default {
         })
         const data = await res.json()
         this.icecreams = this.icecreams.map((f) =>
-          f.id === data.id
+          f.icecreamId === data.icecreamId
             ? { ...f, 
             image: data.image,
             name:  data.name,
             price:  data.price,
-            describe:  data.describe,
+            description:  data.description,
             size: data.size,
             brand: data.brand,
             topping: data.topping,
@@ -79,13 +79,13 @@ export default {
                     method: 'DELETE'
                 })
                 this.icecreams = this.icecreams.filter(icecream => {
-        return icecream.id !== payload;
+        return icecream.icecreamId !== payload;
       });  } catch (error) {
                 console.log(error)
             }
         },
     async fetchicecreams() {
-      const res= await fetch(this.url)
+      const res= await fetch("http://localhost:6001/icecream")
       const data=await res.json()
       return data}
     
