@@ -10,6 +10,7 @@ import HomeView from './UI/HomeView'
 import BaseTopping from  './blogs/BaseTopping'
 import FirstHome from  './UI/FirstHome'
 import BaseBrand from  './blogs/BaseBrand'
+import Footer from  './UI/Footer'
 
 const app = createApp(App)
 app.component('register-form', RegisterForm)
@@ -18,4 +19,5 @@ app.component('all-product', AllProduct)
 app.component('base-topping', BaseTopping)
 app.component('first-home', FirstHome)
 app.component('base-brand', BaseBrand)
+app.component('foo-ter', Footer)
 app.use(router).mount('#app')
