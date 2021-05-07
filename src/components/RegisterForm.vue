@@ -272,10 +272,6 @@ export default {
   if(this.nameEnter=== ""){
       this.validator.name.error.message = "***Please Input your name***";
   }
-  if(this.nameEnter.length < this.validator.name.minLength){
-    this.validator.name.error.message = "***Please input name more than " 
-    + this.validator.name.minLength +"***"
-  }
   if(this.nameEnter.length > this.validator.name.maxLength){
     this.validator.name.error.message = "***Please input name less than " 
     + this.validator.name.maxLength +"***"

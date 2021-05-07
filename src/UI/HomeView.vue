@@ -1,8 +1,6 @@
 <template>
   <div class="mx-8">
-    <!--
-  <img class="absolute  my-80 w-2/6 object-center" :src="require('../assets/Topping.png')" alt="image" />
-    -->
+
     <first-home></first-home>
     <base-topping></base-topping> 
     </div>

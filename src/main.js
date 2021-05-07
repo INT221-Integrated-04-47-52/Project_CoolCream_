@@ -7,7 +7,7 @@ import router from './router'
 import AllProduct from './components/AllProduct'
 import RegisterForm from './components/RegisterForm'
 import HomeView from './UI/HomeView'
-import BaseTopping from  './blogs/Baseopping'
+import BaseTopping from  './blogs/BaseTopping'
 import FirstHome from  './UI/FirstHome'
 import BaseBrand from  './blogs/BaseBrand'
 

@@ -14,7 +14,7 @@
           />
 
           <div class="mx-auto mb-8 h-full">
-            <blog-brand></blog-brand>
+            <base-brand></base-brand>
           </div>
         </div>
       </div>
