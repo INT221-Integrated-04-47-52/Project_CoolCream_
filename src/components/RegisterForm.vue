@@ -174,8 +174,6 @@
             </button>
             <p v-if="invalidInput" class="text-center text-red-600 m-5"
           >*** One or more input fields are invalid *** 
-
-
           <br>- Please check your provided data -</p>
           <p v-if="error">{{ error }}</p>
           </div>
@@ -206,37 +204,51 @@ export default {
       sizeEnter:"",
       lastdayEnter:"",
       toppingEnter:[],
+      urlTopping:"http://localhost:6001/topping",
+      urlSize:"http://localhost:6001/size",
+      urlBrand:"http://localhost:6001/brand",
+      urlAddproduct:"http://localhost:6001/add",
+      urlDefault:"http://localhost:6001",
+      
       validator:{
         name:{
           required: true,
-          minLength:5,
+          minLength:0,
           maxLength:15,
-          error:{status:true, message:""}},
+          error:{status:true, message:""}
+        },
         description:{
           required: true,
-          minLength:5,
+          minLength:0,
           maxLength:200,
-          error:{status:true, message:""}},
+          error:{status:true, message:""}
+        },
         brand:{
           required: true,
-          error:{status:true, message:""}},
+          error:{status:true, message:""}
+        },
         price:{
           required: true,
           minLength:0,
           maxLength:5,
-          error:{status:true, message:""}},
+          error:{status:true, message:""}
+        },
         size:{
           required: true,
-          error:{status:true, message:""}},
+          error:{status:true, message:""}
+        },
         lastday:{
           required: true,
-          error:{status:true, message:""}},
+          error:{status:true, message:""}
+        },
         topping:{
           required: true,
-          error:{status:true, message:""}},
+          error:{status:true, message:""}
+        },
         image:{
           required: true,
-          error:{status:true, message:""}},
+          error:{status:true, message:""}
+        },
         }
 
       
@@ -330,20 +342,9 @@ export default {
         this.invalidInput = true;
         return;
       }
-      console.log({
-        /*  image: this.image*/
-          name: this.nameEnter,
-          price: this.priceEnter,
-          description: this.descriptionEnter,
-          size: this.sizeEnter,
-          brand: this.brandEnter,
-          lastday: this.lastdayEnter,
-          topping: this.toppingEnter,
-
-        })
       this.invalidInput = false;   
       this.error = null;
-      fetch('http://localhost:6001/add', {
+      fetch(this.urlDefault+"/max-icecreamId" + 1, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -371,7 +372,7 @@ export default {
           console.log(error);
           this.error = error.message;
         });
-          this.image = null;
+          this.image = "Upload your image";
           this.nameEnter= "";
           this.priceEnter= "";
           this.descriptionEnter= "";
@@ -381,18 +382,18 @@ export default {
            this.toppingEnter= [];
 },
     async fetchSize() {
-      const res = await fetch("http://localhost:6001/size");
+      const res = await fetch(this.urlSize);
       const data = await res.json();
       return data;
     },
     async fetchBrand() {
      
-      const res = await fetch("http://localhost:6001/brand");
+      const res = await fetch(this.urlBrand);
       const data = await res.json();
       return data;
     },
     async fetchTopping() {
-      const res = await fetch("http://localhost:6001/topping");
+      const res = await fetch(this.urlTopping);
       const data = await res.json();
       return data;
     },
@@ -401,7 +402,6 @@ export default {
     this.sizeArray = await this.fetchSize();
     this.brandArray = await this.fetchBrand();
     this.toppingArray = await this.fetchTopping();
-    console.log(this.brandArray)
   },
 };
 </script>

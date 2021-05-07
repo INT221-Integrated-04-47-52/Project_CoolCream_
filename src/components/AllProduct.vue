@@ -23,6 +23,8 @@ export default {
       isVisible: false,
       ifEdit: false,
      icecreams: [],
+     urlIcecream: "http://localhost:6001/icecream",
+     
  
     }
   },
@@ -30,7 +32,7 @@ export default {
    async edit(icecream){
       try {
         const res 
-        = await fetch(`${this.url}/${icecream.icecreamId}`, {
+        = await fetch(`${this.urlIcecream}/edit/${icecream.icecreamId}`, {
           method: 'PUT',
           headers: {
             'content-type': 'application/json'
@@ -75,7 +77,7 @@ export default {
     },
     async deleteicecream(payload) {
             try {
-                await fetch(`${this.url}/${payload}`, {
+                await fetch(this.url,  {
                     method: 'DELETE'
                 })
                 this.icecreams = this.icecreams.filter(icecream => {
