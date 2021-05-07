@@ -1,11 +1,11 @@
 <template>
 
-  <div class="flex flex-col items-center space-x-10 justify-center mt-16 mx-auto m-8">
+  <div class="md:flex md:flex-row flex flex-col items-center space-x-10 justify-center mt-16 mx-auto m-8">
     
       <!-- 1 card -->
       <div class="relative bg-white py-auto px-6 rounded-3xl w-64 my-4 shadow-xl  mb-8">
         <div class="flex items-center absolute rounded-full px-1 py-1 shadow-xl bg-white left-1 -top-10">
-          <img src="../assets/pin.jpg" class="w-96 h-full rounded-full"/>
+          <img src="../assets/pin.jpg" class="w-96 h-full rounded-full" alt=""/>
         </div>
         <div class="mt-52 ">
           <p class="text-xl text-purple-700 font-semibold my-2">Khorapin <br> Gadpu </p>
