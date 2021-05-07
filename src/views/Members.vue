@@ -1,9 +1,9 @@
 <template>
 
-  <div class="flex items-center space-x-10 justify-center mt-16 mx-auto m-8">
+  <div class="flex flex-col items-center space-x-10 justify-center mt-16 mx-auto m-8">
     
       <!-- 1 card -->
-      <div class="relative bg-white py-auto px-6 rounded-3xl w-64 my-4 shadow-xl">
+      <div class="relative bg-white py-auto px-6 rounded-3xl w-64 my-4 shadow-xl  mb-8">
         <div class="flex items-center absolute rounded-full px-1 py-1 shadow-xl bg-white left-1 -top-10">
           <img src="../assets/pin.jpg" class="w-96 h-full rounded-full"/>
         </div>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <!-- 2 card -->
-      <div class="relative bg-white py-auto px-6 rounded-3xl w-64 my-4 shadow-xl">
+      <div class="relative bg-white py-auto px-6 rounded-3xl w-64 my-4 shadow-xl  mb-8">
         <div class="flex items-center absolute rounded-full px-1 py-1 shadow-xl bg-white left-1 -top-10">
           <img src="../assets/nooch.jpg" class="w-96 h-full rounded-full"/>
         </div>
@@ -62,9 +62,9 @@
       </div>
 
       <!-- 3 card -->
-      <div class="relative bg-white py-auto px-6 rounded-3xl w-64 my-4 shadow-xl">
+      <div class="relative bg-white py-auto px-6 rounded-3xl w-64 my-4 shadow-xl  mb-8">
         <div class="flex items-center absolute rounded-full px-1 py-1 shadow-xl bg-white left-1 -top-10">
-          <img src="../assets/nook.jpg" class="w-96 h-full rounded-full"/>
+          <img src="../assets/nook.jpg" class="w-96 h-full rounded-full" alt=""/>
         </div>
         <div class="mt-52 ">
           <p class="text-xl font-semibold text-pink-500 my-2">Prapaporn <br> Sila</p>
