@@ -1,5 +1,5 @@
 <template>
- <img class="mt-12 w-8/12" src="../assets/AllProductimage.png"/>
+ <img class="md:mt-12 md:w-7/12 w-full" src="../assets/AllProductimage.png" alt=""/>
 <all-product></all-product>
 
   </template>

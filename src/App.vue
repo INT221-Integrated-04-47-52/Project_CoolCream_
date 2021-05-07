@@ -1,6 +1,7 @@
 <template>
-  <the-navigator></the-navigator>
-  <router-view />
+
+  <the-navigator ></the-navigator>
+  <router-view/>
 
 </template>
 
@@ -9,6 +10,11 @@ import TheNavigator from './layouts/TheNavigator.vue'
 
 export default {
   name: 'App',
+  data: () => {
+  return {
+
+  }
+},
   components: {
     TheNavigator
 
@@ -29,4 +35,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>

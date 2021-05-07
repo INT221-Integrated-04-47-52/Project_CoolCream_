@@ -1,16 +1,12 @@
 <template>
     <div class="flex flex-row">
-    
         <div class="flex flex-col justify-center">
-      <!--   <h1
-            class="my-4 text-3xl mt-25 md:text-5xl text-white font-bold leading-tight text-center md:text-left"
-          >
-            Add Product 
-          </h1>--> 
-          <div class="mx-auto w-3/4 my-4">
+          <div class="md:mx-auto  w-4/12 ml-8 mx-2 my-4">
           <img src="../assets/addproduct.png" alt="Add Product"/>
           </div>
-          <register-form class="w-full"></register-form>
+          <div class="md:mx-48 mx-4 my-8">
+          <register-form class="md:w-full w-4/12 ml-4"></register-form>
+        </div>
         </div>
       </div>
     
