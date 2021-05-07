@@ -2,11 +2,12 @@
 
   <the-navigator ></the-navigator>
   <router-view/>
-
+  <foo-ter></foo-ter>
 </template>
 
 <script>
 import TheNavigator from './layouts/TheNavigator.vue'
+
 
 export default {
   name: 'App',

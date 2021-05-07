@@ -16,7 +16,7 @@
             <p>- Back-End</p>
           </div>
           <div class="flex space-x-2 text-black text-sm my-3">
-            <p>- DevOps</p>
+            <p>- DataBase</p>
           </div>
           
           <div class="border-t-2"></div>
@@ -69,7 +69,7 @@
         <div class="mt-52 ">
           <p class="text-xl font-semibold text-pink-500 my-2">Prapaporn <br> Sila</p>
           <div class="flex space-x-2 text-black text-sm">
-            <p>- Front-End</p>
+            <p>- DevOps</p>
           </div>
           <div class="flex space-x-2 text-black text-sm my-3">
             <p>- Database</p>
