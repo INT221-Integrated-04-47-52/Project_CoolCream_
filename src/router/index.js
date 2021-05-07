@@ -9,9 +9,11 @@ const routes = [
     component: Home
   },
   {
-    path: '/AllProduct',
+    path: '/AllProduct/:icecreamId',
+    alias:'/AllProduct',
     name: 'AllProduct',
-    component: AllProduct
+    component: AllProduct,
+    props: true,
   },
   {
     path: '/Members',

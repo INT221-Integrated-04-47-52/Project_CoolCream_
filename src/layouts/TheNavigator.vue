@@ -1,11 +1,12 @@
 <template>
   <div class="w-full container mx-auto  flex items-center justify-between ">
- 
-      <a class="flex w-6/12 items-center text-blue-800 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
-        <router-link to="/"> <img src="../assets/CoolCreamLogo.png" class="md:w-64 w-96"/></router-link>
+
+      <a class="flex w-12/12 ml-4 items-center text-blue-800 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
+        <router-link to="/"> <img src="../assets/CoolCreamLogo.png" class="md:w-96 w-full"/></router-link>
       </a>
+      <div class="absolute top-14 right-12 md:w-3/12 w-6/6 h-48 md:h-72">
       <div class="my-auto md:hidden">
-        <div v-if="navBar" @click="navBar=false" class="material-icons text-right  w-1/12  text-black text-3xl cursor-pointer">
+        <div v-if="navBar" @click="navBar=false" class="material-icons text-right   w-1/12  text-black text-3xl cursor-pointer">
           menu
         </div>
         <div v-else  @click="navBar=true" class="material-icons text-right   text-black text-3xl cursor-pointer">
@@ -13,7 +14,8 @@
         </div>
      
       </div>
-    <div>
+    </div>
+    <div class="w-5/6">
       <div class="hidden md:flex md:flex-row justify-end content-right -mr4 text-black text-xl font-bold">
         <router-link to="/" class="mx-4 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
         >Home</router-link>
@@ -21,7 +23,7 @@
         >Products</router-link>
         <router-link to="/AddProduct" class="mx-4 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
         >Add Product</router-link>
-        <router-link to="/Members" class="mx-4 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
+        <router-link to="/Members" class="ml-4 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
         >Members</router-link> 
       </div>
      
