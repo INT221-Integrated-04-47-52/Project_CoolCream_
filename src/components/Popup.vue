@@ -77,7 +77,7 @@
                   {{ brand.brandName }}
                 </option>
               </select>
-              <span v-else class="text-pink-500">{{ icecream.brand.brandName }}</span>
+              <span v-else class="text-pink-500">{{ brand.brandName }}</span>
             </p>
 
             <!--Size-->
@@ -151,11 +151,11 @@
             
                 <span v-else class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold  rounded">
                   <span class="  bg-blue-800  px-4 ml-4 mr-2 rounded"
-                  v-for="topping in icecream.topping"
+                  v-for="icecream in icecreamArray"
                   value="topping"
                   id="topping"
-                  :key="topping"
-                  name="topping"> {{ topping.toppingName}} </span>
+                  :key="icecream"
+                  name="topping"> {{ icecream.topping.toppingName}} </span>
                 </span>
           </div>
           
@@ -265,12 +265,17 @@ export default {
       const res = await fetch("http://localhost:6001/brand");
       const data = await res.json();
       return data;
+    },async fetchIcecreams() {
+      const res = await fetch("http://localhost:6001/icecream"+"/"+ this.icecream.icecreamId);
+      const data = await res.json();
+      return data;
     },
   },
   async created() {
     this.sizeArray = await this.fetchSize();
     this.brandArray = await this.fetchBrand();
     this.toppingArray = await this.fetchTopping();
+    this.icecreamArray = await this.fetchIcecream();
   },
 };
 </script>

@@ -1,24 +1,23 @@
 <template>
   
-  <div class="w-6/6 bg-white border-2 border-black my-12 rounded-lg h-full">
+  <div class="w-6/6  bg-white border-2 border-black my-12 rounded-lg h-full">
     <div class="m-4">
       <div
-        class="bg-cover bg-fixed bg-gradient-to-b from-blue-400 via-blue-200 to-green-200 w-full bg-white flex rounded-lg h-5/6"
+        class="mx-auto bg-cover bg-fixed bg-gradient-to-b from-blue-400 via-blue-200 to-green-200 w-full bg-white flex rounded-lg h-5/6"
       >
-        <div>
+        <div class="w-1/6">
           <img
-            class="md:w-3/6 md:h-96 md:absolute md:bottom-24 md:right-0 md:justify-right md:object-right-bottom
-            w-3/6 h-48 absolute right-0 justify-right "
+            class="md:w-2/6  md:h-96 md:absolute md:bottom-24 md:right-18 md:justify-right md:object-right-bottom
+            w-2/6 h-32 absolute right-0 justify-right "
             :src="require('../assets/cloudright.png')"
-            alt="image"
-          />
+            alt="image"/>
         </div>
         <div
           class="flex m-4 my-48 justify-start text-left place-items-start md:flex md:justify-left"
         >
           <div>
             <img
-              class="md:w-7/12 md:h-48 w-12/12 h-8/12 flex "
+              class="md:w-8/12 md:h-48 w-12/12 h-8/12 flex "
               :src="require('../assets/welcome.png')"
               alt="image"
             />
