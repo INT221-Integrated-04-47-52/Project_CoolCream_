@@ -5,7 +5,7 @@
           <img src="../assets/addproduct.png" alt="Add Product"/>
           </div>
           <div class="md:mx-48 mx-4 my-8">
-          <register-form class="md:w-11/12 w-11/12 ml-4"></register-form>
+          <register-form class="md:w-12/12 w-11/12 ml-4"></register-form>
         </div>
         </div>
       </div>

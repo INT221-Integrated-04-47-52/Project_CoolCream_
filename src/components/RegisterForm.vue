@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="bg-white text-left w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
-      <div class="mb-4">
+    <div class="bg-white text-left w-12/12 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
+      <div class="mb-4 w-full">
         <label
           class="block text-center text-black text-xl py-2 font-bold mb-2"
           for="priceaddress"
@@ -249,9 +249,7 @@ export default {
           required: true,
           error:{status:true, message:""}
         },
-        }
-
-      
+      }
     }
   },
 
@@ -280,7 +278,6 @@ export default {
       this.imageName=file.name;
     },    
     checkError(){
- 
   if(this.nameEnter=== ""){
       this.validator.name.error.message = "***Please Input your name***";
   }

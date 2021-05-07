@@ -5,8 +5,7 @@
   <div class="bgbrand p-8 md:p-24 md:pb-8 mt-24 relative ">
     <div class="bg-white border-2 border-black rounded-lg h-full">
       <div class="m-4 ">
-        <div
-          class="bg-cover bg-fixed bg-gradient-to-b from-blue-400 via-blue-200 to-green-200 w-full bg-white flex rounded-lg md:h-5/6 ">
+        <div class="bg-cover bg-fixed bg-gradient-to-b from-blue-400 via-blue-200 to-green-200 w-full bg-white flex rounded-lg md:h-5/6 ">
           <img
             class="absolute top-0 right-0 md:w-5/12 w-6/6 h-48 md:h-96"
             :src="require('../assets/cloudright.png')"
