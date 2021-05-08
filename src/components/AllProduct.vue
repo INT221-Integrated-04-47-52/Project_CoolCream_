@@ -1,10 +1,12 @@
 <template>
+  <div>
 <div class="flex flex-row flex-wrap">
 <div v-for="icecream in icecreams" :key="icecream.icecreamId" > 
   <base-icecream @icecream-popup="toggleVisibility" :icecream="icecream" @delete="deleteicecream"></base-icecream></div> 
 </div>  
 <div class="details" v-show="isVisible">
 <popup @icecream-submit="edit" @close-popup="closePopup" :icecream="icecreamPopup"></popup>
+</div>
 </div>
 </template>
 <script>
