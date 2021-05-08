@@ -13,6 +13,13 @@
       <div class="space-y-4 md:space-x-4 md:grid md:grid-cols-3">
         <div class=" mt-5 place-items-center md:mt-0 md:justify-self-center"
         >
+        <div>
+          <label
+            class="text-left block mt-4 text-blue-600 font-bold items-start"
+            htmlFor="image">Image</label>
+
+          <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
+        </div>
           <img class="w-72 h-72 transform rounded-full hover:rotate-6 transition duration-700 ease-in-out "
             :src="icecream.image" alt="imagesProduct"
           />
