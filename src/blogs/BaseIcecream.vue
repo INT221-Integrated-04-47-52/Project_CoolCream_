@@ -4,8 +4,7 @@
   ><div class="mt-4 rounded-lg ">
     <img
       class="ml-12 py-4 transform rounded-full hover:rotate-6 transition duration-700 ease-in-out px-2 w-72 h-72"
-      :src="icecream.image" alt=""
-    /></div>
+      :src="image.url" alt=""/></div>
 
     <span
       class="text-gray-600 font-sans text-xl
@@ -45,6 +44,11 @@
 <script>
 
 export default {
+  data(){
+    return {
+      image:""
+    }
+  },
   components: {
 
   },
@@ -58,7 +62,9 @@ export default {
     toggleVisibility() {
       this.$emit("icecream-popup", this.icecream);
     }, 
-  },
+    
+  }, async created() {
+      this.image = await fetch("http://localhost:6001/image"+"/"+ this.icecream.image)},
 };
 </script>
 <style>

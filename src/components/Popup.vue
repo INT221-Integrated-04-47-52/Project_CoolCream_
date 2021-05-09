@@ -13,18 +13,22 @@
       <div class="space-y-4 md:space-x-4 md:grid md:grid-cols-3">
         <div class=" mt-5 place-items-center md:mt-0 md:justify-self-center"
         >
-        <div>
+
+ <div  v-if="isEdit">
           <label
             class="text-left block mt-4 text-blue-600 font-bold items-start"
             htmlFor="image">Image</label>
-
-          <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
+        <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
+        <img class="w-72 h-72 transform rounded-full hover:rotate-6 transition 
+        duration-700 ease-in-out" :src="image.url" alt=""/>
+     
+      </div>
+        <img v-else class="w-72 h-72 transform rounded-full hover:rotate-6 
+        transition duration-700 ease-in-out " :src="image.url" alt=""/>
+     
+       
         </div>
-          <img class="w-72 h-72 transform rounded-full hover:rotate-6 transition duration-700 ease-in-out "
-            :src="icecream.image" alt="imagesProduct"
-          />
-        </div>
-
+         
         <div class="col-span-2 space-y-2">
           <div
             class="w-full block text-gray-800 py-2 font-bold items-start text-left space-y-4 mb-5"
@@ -78,13 +82,12 @@
                 name="brand"
                 v-if="isEdit"
                 v-model="brandEnter"
-                class="shadow rounded w-48 h-7"
-              >
+                class="shadow rounded w-48 h-7"  >
                 <option v-for="brand in brandArray" :key="brand.brandId">
                   {{ brand.brandName }}
                 </option>
               </select>
-              <span v-else class="text-pink-500">{{ brand.brandName }}</span>
+              <span v-else class="text-pink-500">{{ icecream.brand==undefined?"":icecream.brand.brandName}}</span>
             </p>
 
             <!--Size-->
@@ -98,25 +101,20 @@
                     v-for="size in sizeArray"
                     value="siz.name"
                     id="size"
-                    :key="size.id"
+                    :key="size.sizeId"
                     name="size"
-                    @click="selectSize(size.name)"
+                    @click="selectSize(size.sizeType)"
                     :class="{
-                      'bg-blue-800 text-white': sizeEnter.includes(size.name),
+                      'bg-blue-800 text-white': sizeEnter.includes(size.sizeType),
                     }"
                     class="text-center w-16 border-blue-800 border-2 hover:bg-blue-800 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
-                  >
-                    {{ size.name }}
+                  > {{ size.sizeType }}
                   </option>
                 </div>
               </span> 
               <span v-else class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold  rounded">
                 <span class="w-20 bg-blue-800  px-4 ml-4 mr-2 rounded "
-                v-for="size in icecream.size"
-                value="size"
-                id="size"
-                :key="size"
-                name="size"> {{ size.sizeName}} </span>
+                name="size">  {{ icecream.size==undefined?"":icecream.size.sizeType}} </span>
               </span>
             </div>
             <!--lastday-->
@@ -138,7 +136,7 @@
               <span v-if="isEdit">
                 <div
                   class="mx-2 flex text-blue-800 flex flex-row grid grid-flow-col grid-cols-2 grid-rows-4 md:grid md:grid-flow-col md:grid-cols-4 md:grid-rows-2 gap-2 "
-                >
+>
                   <option
                     v-for="topping in toppingArray"
                     value="topping"
@@ -146,26 +144,25 @@
                     name="topping"
                     @click="selectTopping(topping)"
                     :class="{
-                      'bg-blue-800 text-white': toppingEnter.includes(topping),
+                      'bg-blue-800 text-white': toppingEnter.map(t=>t.toppingName).includes(topping.toppingName),
                     }"
-                    :key="topping.id"
+                    :key="topping.toppingId"
                     class="text-center w-32 border-blue-800 border-2 hover:bg-blue-800 hover:text-white font-bold py-0.5 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
                   >
-                    {{ topping.name }}
+                    {{ topping.toppingName }}
                   </option>
                 </div>
               </span>
-            
                 <span v-else class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold  rounded">
                   <span class="  bg-blue-800  px-4 ml-4 mr-2 rounded"
-                  v-for="icecream in icecreamArray"
+                  v-for="top in icecream.icecreamHasToppings"
                   value="topping"
                   id="topping"
-                  :key="icecream"
-                  name="topping"> {{ icecream.topping.toppingName}} </span>
+                  :key="top.topping.toppingId"
+                  name="topping"> {{ top.topping.toppingName}} </span>
                 </span>
           </div>
-          
+         
 
           <div class="flex flex-row-reverse">
             <button
@@ -173,9 +170,8 @@
               class="ml-4 justify-center btn btn-primary bg-gradient-to-b from-green-500 to-green-800 hover:from-blue-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
               type="button "
               @click.prevent="submit(icecream)"
-            >
-              Save
-            </button>
+            >  Save </button>
+
             <button
               v-if="!isEdit"
               class="justify-center btn btn-primary bg-gradient-to-b from-blue-500 to-blue-800 hover:from-pink-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
@@ -209,17 +205,29 @@ export default {
       lastdayEnter: "",
       toppingEnter: [],
       isEdit: false,
+      image:"",
+      uploadImage:null
     
     };
   },
   props: ["icecream"],
   methods: {
     selectTopping(topping) {
-      if (this.toppingEnter.includes(topping)) {
-        this.toppingEnter = this.toppingEnter.filter((t) => t !== topping);
+      if ( this.toppingEnter.map(t=>t.toppingName).includes(topping.toppingName)) {
+        this.toppingEnter = this.toppingEnter.filter((t) => t.toppingId !== topping.toppingId);
       } else {
         this.toppingEnter.push(topping);
       }
+    },
+    uploadImg(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        this.image.url = event.target.result;
+      };
+      reader.readAsDataURL(file);
+      this.imageFile = file;
+    
     },
     selectSize(size) {
       if (this.sizeEnter.includes(size)) {
@@ -237,9 +245,9 @@ export default {
       this.nameEnter = this.icecream.icecreamName;
       this.priceEnter = this.icecream.price;
       this.descriptionEnter = this.icecream.description;
-      this.sizeEnter = this.icecream.size;
-      this.brandEnter = this.icecream.brand;
-      this.toppingEnter = this.icecream.topping;
+      this.sizeEnter = this.icecream.size.sizeType;
+      this.brandEnter = this.icecream.brand.brandName;
+      this.toppingEnter = this.icecream.icecreamHasToppings.map(t => t.topping);
       this.lastdayEnter = this.icecream.lastday;
     },
     submit(icecream) {
@@ -272,17 +280,22 @@ export default {
       const res = await fetch("http://localhost:6001/brand");
       const data = await res.json();
       return data;
-    },async fetchIcecreams() {
-      const res = await fetch("http://localhost:6001/icecream"+"/"+ this.icecream.icecreamId);
-      const data = await res.json();
-      return data;
-    },
+    }
+    ,
+  
   },
   async created() {
     this.sizeArray = await this.fetchSize();
     this.brandArray = await this.fetchBrand();
     this.toppingArray = await this.fetchTopping();
-    this.icecreamArray = await this.fetchIcecream();
-  },
+       }, 
+   watch: {
+       icecream: async function icecreamidCheck() {
+                if (this.icecream.image != undefined) {
+                    this.image = await fetch("http://localhost:6001/image/"+this.icecream.image);
+                }
+            }
+        }
+   
 };
 </script>
