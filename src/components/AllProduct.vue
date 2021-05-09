@@ -89,7 +89,7 @@ export default {
             }
         },
     async fetchicecreams() {
-      const res= await fetch("http://localhost:6001/icecream")
+      const res= await fetch("${process.env.VUE_APP_ROOT_API}")
       const data=await res.json()
       return data}
     
