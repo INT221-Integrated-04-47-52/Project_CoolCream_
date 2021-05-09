@@ -89,7 +89,7 @@ export default {
             }
         },
     async fetchicecreams() {
-      const res= await fetch("${process.env.VUE_APP_ROOT_API}")
+      const res= await fetch(`${process.env.VUE_APP_ROOT_API}icecream`)
       const data=await res.json()
       return data}
     
