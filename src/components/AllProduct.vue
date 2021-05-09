@@ -26,7 +26,7 @@ export default {
       isVisible: false,
       ifEdit: false,
      icecreams: [],
-     urlIcecream: "http://localhost:6001/icecream",
+     urlIcecream: `${process.env.VUE_APP_ROOT_API}icecream`,
      
  
     }
@@ -144,7 +144,7 @@ export default {
             }
         },
     async fetchicecreams() {
-      const res= await fetch("http://localhost:6001/icecream")
+      const res= await fetch(`${process.env.VUE_APP_ROOT_API}icecream`)
       const data=await res.json()
       return data
     }

@@ -218,12 +218,11 @@ export default {
         image: null,
         icecreamHasTopping: []
       },
-      urlTopping: "http://localhost:6001/topping",
-      urlSize: "http://localhost:6001/size",
-      urlBrand: "http://localhost:6001/brand",
-      urlAddproduct: "http://localhost:6001/add",
-      urlDefault: "http://localhost:6001",
-
+      urlTopping:`${process.env.VUE_APP_ROOT_API}topping`,
+      urlSize:`${process.env.VUE_APP_ROOT_API}size`,
+      urlBrand:`${process.env.VUE_APP_ROOT_API}brand`,
+      urlAddproduct:`${process.env.VUE_APP_ROOT_API}add`,
+      urlDefault:`${process.env.VUE_APP_ROOT_API}`,
       validator: {
         name: {
           required: true,
@@ -385,7 +384,7 @@ export default {
       formData.append("file", this.imageFile,this.icecream.image);
       await formData.append("newIcecream", blob);
       
- try{const res =  await fetch("http://localhost:6001/add/image", {
+   try{const res =  await fetch("http://localhost:6001/add/image", {
         method: 'POST',
         body: formData
       })
