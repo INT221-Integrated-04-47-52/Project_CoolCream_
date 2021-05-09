@@ -25,7 +25,7 @@ export default {
       isVisible: false,
       ifEdit: false,
      icecreams: [],
-     urlIcecream: "http://localhost:6001/icecream",
+     urlIcecream: `${process.env.VUE_APP_ROOT_API}icecream`,
      
  
     }
