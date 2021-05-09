@@ -204,7 +204,7 @@ export default {
       sizeEnter:"",
       lastdayEnter:"",
       toppingEnter:[],
-      urlTopping:"`${process.env.VUE_APP_ROOT_API}topping`,
+      urlTopping:`${process.env.VUE_APP_ROOT_API}topping`,
       urlSize:`${process.env.VUE_APP_ROOT_API}size`,
       urlBrand:`${process.env.VUE_APP_ROOT_API}brand`,
       urlAddproduct:`${process.env.VUE_APP_ROOT_API}add`,
