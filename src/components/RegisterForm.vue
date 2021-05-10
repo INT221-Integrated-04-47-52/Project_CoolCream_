@@ -34,7 +34,7 @@
             >
             <input
               class="mt-2 shadow text-left appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out invalid-feedback"
-              type="number"
+              type="number" step="0.01"
               id="price"
               name="price"
               v-model.trim="icecream.priceEnter"
@@ -148,17 +148,21 @@
                       .includes(topping.toppingId),
                   }"
                   :key="topping.toppingId"
-                  class="mr-2 text-center w-36 border-pink-400 mt-4 border-2 hover:bg-pink-400 hover:text-white font-bold py-0.5 px-auto rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer">
+                  class="mr-2 text-center w-36 border-pink-400 mt-4 border-2 hover:bg-pink-400 hover:text-white font-bold py-0.5 px-auto rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
+                >
                   {{ topping.toppingName }}
                 </option>
               </div>
               <div class="flex flex-row">
-                <div class="mr-11" v-for="topping in toppingArray"
-                  :key="topping.toppingId">
+                <div
+                  class="mr-11"
+                  v-for="topping in toppingArray"
+                  :key="topping.toppingId"
+                >
                   <img :src="topping.toppingImage" alt="imagesTopping" />
                 </div>
               </div>
-              <div>{{this.icecream.toppingEnter}}</div>
+              <div>{{ this.icecream.toppingEnter }}</div>
             </div>
           </div>
           <div class="text-red-600">{{ validator.topping.error.message }}</div>
@@ -166,7 +170,8 @@
             <label
               class="text-left block mt-4 text-blue-600 font-bold items-start"
               htmlFor="image"
-              >Image</label>
+              >Image</label
+            >
 
             <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
             <img class="m-8" alt="" :src="image.url" />
@@ -214,15 +219,15 @@ export default {
         brandEnter: "",
         sizeEnter: "",
         lastdayEnter: "",
-        toppingEnter: [], 
+        toppingEnter: [],
         image: null,
-        icecreamHasTopping: []
+        icecreamHasTopping: [],
       },
-      urlTopping:`${process.env.VUE_APP_ROOT_API}topping`,
-      urlSize:`${process.env.VUE_APP_ROOT_API}size`,
-      urlBrand:`${process.env.VUE_APP_ROOT_API}brand`,
-      urlAddproduct:`${process.env.VUE_APP_ROOT_API}add`,
-      urlDefault:`${process.env.VUE_APP_ROOT_API}`,
+      urlTopping: "http://localhost:6001/topping",
+      urlSize: "http://localhost:6001/size",
+      urlBrand: "http://localhost:6001/brand",
+      urlAddproduct: "http://localhost:6001/product",
+      urlDefault: "http://localhost:6001/",
       validator: {
         name: {
           required: true,
@@ -351,12 +356,319 @@ export default {
         this.icecream.lastdayEnter === ""
       );
     },
-      async submitSurvey() {
-      /* */
+
+  /*  async submitSurvey() {
       if (this.checkError()) {
         this.invalidInput = true;
         return;
       }
+      this.invalidInput = false;
+      this.error = null;
+      this.icecream.icecreamId = (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
+      for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
+        let hasToppingId =
+          (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
+          1 +
+          i;
+        this.icecream.icecreamHasTopping.push({
+          hasToppingId: hasToppingId,
+          topping: this.icecream.toppingEnter[i],
+        });
+      }
+      let iceProduct = {
+        icecreamId: this.icecream.icecreamId,
+        image: this.icecream.image,
+        icecreamName: this.icecream.nameEnter,
+        price: this.icecream.priceEnter,
+        description: this.icecream.descriptionEnter,
+        size: this.icecream.sizeEnter,
+        brand: this.icecream.brandEnter,
+        lastday: this.icecream.lastdayEnter,
+        icecreamHasToppings: this.icecream.icecreamHasTopping,
+      };
+      let jsonIcecream = await JSON.stringify(iceProduct);
+      const blob = await new Blob([jsonIcecream], {
+        type: "application/json",
+      });
+      let formData = new FormData();
+      formData.append("file", this.imageFile, this.icecream.image);
+      await formData.append("newIcecream", blob);
+      await fetch("http://localhost:6001/add/"+this.iceccream.icecreamId, {  headers: {
+          "Content-type": "application/json",
+        },method: "POST", body: jsonIcecream });
+
+      fetch("http://localhost:6001/add/image"+ this.icecream.icecreamId, {
+        method: "POST",
+       
+        body: formData,
+      });
+      console.log("dfsrsfdsv" + jsonIcecream);
+      console.log("fdaffd" + formData);
+      formData.append("file", this.imageFile, this.icecream.image);
+
+      console.log(formData);
+    } /*},*/
+   
+    async submitSurvey() {
+      if (this.checkError()) {
+        this.invalidInput = true;
+        return;
+      }
+      this.invalidInput = false;
+      this.error = null;
+      this.icecream.icecreamId =
+        (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
+      for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
+        let hasToppingId =
+          (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
+          1 +
+          i;
+        this.icecream.icecreamHasTopping.push({
+          hasToppingId: hasToppingId,
+          topping: this.icecream.toppingEnter[i],
+        });
+      }
+      let iceProduct = {
+        icecreamId: this.icecream.icecreamId,
+        icecreamName: this.icecream.nameEnter,
+        price: this.icecream.priceEnter,
+        description: this.icecream.descriptionEnter,
+        size: this.icecream.sizeEnter,
+        brand: this.icecream.brandEnter,
+        lastday: this.icecream.lastdayEnter,
+        icecreamHasToppings: this.icecream.icecreamHasTopping,
+        image: this.icecream.image,
+      };
+      let jsonIcecream = await JSON.stringify(iceProduct);
+      console.log(jsonIcecream);
+      const blob = await new Blob([jsonIcecream], {
+      type: "application/json",
+    });
+      let formData = new FormData();
+      formData.append("image", this.imageFile, this.icecream.image);
+      await formData.append("newIcecream", blob);
+      await fetch("http://localhost:6001/add/image/", {
+        method: "POST",
+        body: formData,
+      });
+     
+      alert("🦄🦋 - Add data success - 💖🔆");
+       this.icecream.icecreamId =="";
+      this.icecream.nameEnter=="";
+       this.icecream.priceEnter=="";
+        this.icecream.descriptionEnter=="";
+         this.icecream.sizeEnter=="";
+        this.icecream.brandEnter=="";
+         this.icecream.lastdayEnter=="";
+        this.icecream.icecreamHasTopping=="";
+        this.icecream.image=="";
+    } ,
+    /*.then((response) => {
+          if (response.ok) {
+            // ...
+          } else {
+            throw new Error('Could not save data!');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = error.message;
+        });
+          this.imageFile= null;
+          this.icecream.nameEnter= "";
+          this.icecream.priceEnter= "";
+          this.icecream.descriptionEnter= "";
+          this.icecream.sizeEnter= "";
+          this.icecream.brandEnter= "";
+           this.icecream.lastdayEnter= "";
+           this.icecream.toppingEnter= [];*/
+    /*   async submitSurvey() {
+    
+    if (this.checkError()) {
+      this.invalidInput = true;
+      return;
+    }
+    this.invalidInput = false;
+    this.error = null;
+    this.icecream.icecreamId =
+      (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
+    for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
+      let hasToppingId =
+        (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
+        1 +
+        i;
+      this.icecream.icecreamHasTopping.push({
+        hasToppingId: hasToppingId,
+        topping: this.icecream.toppingEnter[i],
+      });
+    }
+    let iceProduct = {
+      icecreamId: this.icecream.icecreamId,
+      image: this.icecream.image,
+      icecreamName: this.icecream.nameEnter,
+      price: this.icecream.priceEnter,
+      description: this.icecream.descriptionEnter,
+      size: this.icecream.sizeEnter,
+      brand: this.icecream.brandEnter,
+      lastday: this.icecream.lastdayEnter,
+      icecreamHasToppings: this.icecream.icecreamHasTopping,
+    };
+    const jsonIcecream = await JSON.stringify(iceProduct);
+    const blob = await new Blob([jsonIcecream], {
+      type: "application/json",
+    });
+    let formData = new FormData();
+    formData.append("file", this.imageFile, this.icecream.image);
+    await formData.append("newIcecream", blob);
+    console.log(formData)
+    await fetch("http://localhost:6001/add/image", { method: "POST", body: formData })
+      .then((response) => {
+        if (response.ok) {
+          // ...
+        } else {
+          throw new Error("Could not save data!");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        this.error = error.message;
+      });
+    this.image = "Upload your image";
+    this.nameEnter = "";
+    this.priceEnter = "";
+    this.descriptionEnter = "";
+    this.sizeEnter = "";
+    this.brandEnter = "";
+    this.lastdayEnter = "";
+    this.toppingEnter = [];
+  }, /*} อันนี้ของคามิน*/
+    /* 
+    async submitSurvey() {
+    
+      if (this.checkError()) {
+        this.invalidInput = true;
+        return;
+      }
+      this.invalidInput = false;
+      this.error = null;
+      this.icecream.icecreamId =
+        (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
+      for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
+        let hasToppingId =
+          (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
+          1 +
+          i;
+        this.icecream.icecreamHasTopping.push({
+          hasToppingId: hasToppingId,
+          topping: this.icecream.toppingEnter[i],
+        });
+      }
+      let iceProduct = {
+        icecreamId: this.icecream.icecreamId,
+        image: this.icecream.image,
+        icecreamName: this.icecream.nameEnter,
+        price: this.icecream.priceEnter,
+        description: this.icecream.descriptionEnter,
+        size: this.icecream.sizeEnter,
+        brand: this.icecream.brandEnter,
+        lastday: this.icecream.lastdayEnter,
+        icecreamHasToppings: this.icecream.icecreamHasTopping,
+      };
+      let jsonIcecream = await JSON.stringify(iceProduct);
+      const blob = await new Blob([jsonIcecream], {
+        type: "application/json",
+      });
+      let formData = new FormData();
+      formData.append("file", this.imageFile, this.icecream.image);
+      await formData.append("newIcecream", blob);
+      await fetch("http://localhost:6001/add/image", { method: "POST", body: formData })
+    },*/
+    /*  fetch("http://localhost:6001/add/image", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: jsonIcecream,
+     
+      });
+      console.log("dfsrsfdsv"+jsonIcecream)
+   
+      console.log("fdaffd"+formData)
+     
+      let formData = new FormData();
+      formData.append("file", this.imageFile, this.icecream.image);
+      
+      console.log(formData)
+   
+    } ,/*},
+   
+  
+     async submitSurvey() {
+    
+      if (this.checkError()) {
+        this.invalidInput = true;
+        return;
+      }
+      this.invalidInput = false;
+      this.error = null;
+      this.icecream.icecreamId =
+        (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
+      for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
+        let hasToppingId =
+          (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
+          1 +
+          i;
+        this.icecream.icecreamHasTopping.push({
+          hasToppingId: hasToppingId,
+          topping: this.icecream.toppingEnter[i],
+        });
+      }
+      let iceProduct = {
+        icecreamId: this.icecream.icecreamId,
+        image: this.icecream.image,
+        icecreamName: this.icecream.nameEnter,
+        price: this.icecream.priceEnter,
+        description: this.icecream.descriptionEnter,
+        size: this.icecream.sizeEnter,
+        brand: this.icecream.brandEnter,
+        lastday: this.icecream.lastdayEnter,
+        icecreamHasToppings: this.icecream.icecreamHasTopping,
+      };
+      const jsonIcecream = await JSON.stringify(iceProduct);
+      const blob = await new Blob([jsonIcecream], {
+        type: "application/json",
+      });
+      let formData = new FormData();
+      formData.append("file", this.imageFile, this.icecream.image);
+      await formData.append("newIcecream", blob);
+      console.log(formData)
+      await fetch("http://localhost:6001/add/image", { method: "POST", body: formData })
+  
+        .then((response) => {
+          if (response.ok) {
+            // ...
+          } else {
+            throw new Error("Could not save data!");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = error.message;
+        });
+      this.image = "Upload your image";
+      this.nameEnter = "";
+      this.priceEnter = "";
+      this.descriptionEnter = "";
+      this.sizeEnter = "";
+      this.brandEnter = "";
+      this.lastdayEnter = "";
+      this.toppingEnter = [];
+    }, /*},,
+    /*async submitSurvey() {
+     
+      if (this.checkError()) {
+        this.invalidInput = true;
+        return;}
       this.invalidInput = false;
       this.error = null;
       this.icecream.icecreamId = await (await fetch("http://localhost:6001/max-icecreamId")).json() + 1;
@@ -421,7 +733,7 @@ export default {
           topping: this.icecream.toppingEnter,
         
         }) ,*/
-     /* }).then((response) => {
+    /* }).then((response) => {
           if (response.ok) {
             // ...
           } else {
@@ -446,27 +758,7 @@ export default {
       } else {
         throw new Error("Could not save data!");
       }
-    */ },
-    /*.then((response) => {
-          if (response.ok) {
-            // ...
-          } else {
-            throw new Error('Could not save data!');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = error.message;
-        });
-          this.imageFile= null;
-          this.icecream.nameEnter= "";
-          this.icecream.priceEnter= "";
-          this.icecream.descriptionEnter= "";
-          this.icecream.sizeEnter= "";
-          this.icecream.brandEnter= "";
-           this.icecream.lastdayEnter= "";
-           this.icecream.toppingEnter= [];*/
-    async fetchSize() {
+    */ async fetchSize() {
       const res = await fetch(this.urlSize);
       const data = await res.json();
       return data;

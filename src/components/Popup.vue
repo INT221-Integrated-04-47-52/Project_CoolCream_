@@ -4,31 +4,41 @@
   >
     <!-- div card popup -->
     <div class="mx-16 w-screen h-auto p-5 bg-white rounded-3xl shadow-lg">
-      <div class="cursor-pointer focus:ring transform transition duration-300 ease-out flex flex-row-reverse"
-        @click="close">
+      <div
+        class="cursor-pointer focus:ring transform transition duration-300 ease-out flex flex-row-reverse"
+        @click="close"
+      >
         <span class="material-icons"> close </span>
       </div>
 
       <!-- Product image -->
       <div class="space-y-4 md:space-x-4 md:grid md:grid-cols-3">
-        <div class=" mt-5 place-items-center md:mt-0 md:justify-self-center"
-        >
-
- <div  v-if="isEdit">
-          <label
-            class="text-left block mt-4 text-blue-600 font-bold items-start"
-            htmlFor="image">Image</label>
-        <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
-        <img class="w-72 h-72 transform rounded-full hover:rotate-6 transition 
-        duration-700 ease-in-out" :src="image.url" alt=""/>
-     
-      </div>
-        <img v-else class="w-72 h-72 transform rounded-full hover:rotate-6 
-        transition duration-700 ease-in-out " :src="image.url" alt=""/>
-     
-       
+        <div class="mt-5 place-items-center md:mt-0 md:justify-self-center">
+          <div v-if="isEdit">
+            <label
+              class="text-left block mt-4 text-blue-600 font-bold items-start"
+              htmlFor="image"
+              >Image</label
+            >
+            <input
+              type="file"
+              class="w-80 mt-4 focus:outline-none"
+              @change="uploadImg"
+            />
+            <img
+              class="w-72 h-72 transform rounded-full hover:rotate-6 transition duration-700 ease-in-out"
+              :src="image.url"
+              alt=""
+            />
+          </div>
+          <img
+            v-else
+            class="w-72 h-72 transform rounded-full hover:rotate-6 transition duration-700 ease-in-out"
+            :src="image.url"
+            alt=""
+          />
         </div>
-         
+
         <div class="col-span-2 space-y-2">
           <div
             class="w-full block text-gray-800 py-2 font-bold items-start text-left space-y-4 mb-5"
@@ -44,7 +54,9 @@
                 name="name"
                 v-model="nameEnter"
               />
-              <span v-else class="text-pink-500"> {{ icecream.icecreamName }} </span>
+              <span v-else class="text-pink-500">
+                {{ icecream.icecreamName }}
+              </span>
             </p>
 
             <p class="text-black">
@@ -72,7 +84,9 @@
                 name="description"
                 v-model="descriptionEnter"
               />
-              <span v-else class="text-pink-500">{{ icecream.description }}</span>
+              <span v-else class="text-pink-500">{{
+                icecream.description
+              }}</span>
             </p>
 
             <p class="text-black">
@@ -82,12 +96,19 @@
                 name="brand"
                 v-if="isEdit"
                 v-model="brandEnter"
-                class="shadow rounded w-48 h-7"  >
-                <option v-for="brand in brandArray" :key="brand.brandId">
+                class="shadow rounded w-48 h-7"
+              >
+                <option
+                  v-for="brand in brandArray"
+                  :key="brand.brandId"
+                  :value="brand"
+                >
                   {{ brand.brandName }}
                 </option>
               </select>
-              <span v-else class="text-pink-500">{{ icecream.brand==undefined?"":icecream.brand.brandName}}</span>
+              <span v-else class="text-pink-500">{{
+                icecream.brand == undefined ? "" : icecream.brand.brandName
+              }}</span>
             </p>
 
             <!--Size-->
@@ -99,22 +120,30 @@
                 >
                   <option
                     v-for="size in sizeArray"
-                    value="siz.name"
+                    :value="size"
                     id="size"
                     :key="size.sizeId"
                     name="size"
-                    @click="selectSize(size.sizeType)"
+                    @click="selectSize(size)"
                     :class="{
-                      'bg-blue-800 text-white': sizeEnter.includes(size.sizeType),
+                      'bg-blue-800 text-white': size.sizeId == sizeEnter.sizeId,
                     }"
                     class="text-center w-16 border-blue-800 border-2 hover:bg-blue-800 hover:text-white font-bold py-0.5 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
-                  > {{ size.sizeType }}
+                  >
+                    {{ size.sizeType }}
                   </option>
                 </div>
-              </span> 
-              <span v-else class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold  rounded">
-                <span class="w-20 bg-blue-800  px-4 ml-4 mr-2 rounded "
-                name="size">  {{ icecream.size==undefined?"":icecream.size.sizeType}} </span>
+              </span>
+              <span
+                v-else
+                class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold rounded"
+              >
+                <span
+                  class="w-20 bg-blue-800 px-4 ml-4 mr-2 rounded"
+                  name="size"
+                >
+                  {{ icecream.size == undefined ? "" : icecream.size.sizeType }}
+                </span>
               </span>
             </div>
             <!--lastday-->
@@ -135,8 +164,8 @@
               <p class="text-black">Topping :</p>
               <span v-if="isEdit">
                 <div
-                  class="mx-2 flex text-blue-800 flex flex-row grid grid-flow-col grid-cols-2 grid-rows-4 md:grid md:grid-flow-col md:grid-cols-4 md:grid-rows-2 gap-2 "
->
+                  class="mx-2 flex text-blue-800 flex flex-row grid grid-flow-col grid-cols-2 grid-rows-4 md:grid md:grid-flow-col md:grid-cols-4 md:grid-rows-2 gap-2"
+                >
                   <option
                     v-for="topping in toppingArray"
                     value="topping"
@@ -144,7 +173,9 @@
                     name="topping"
                     @click="selectTopping(topping)"
                     :class="{
-                      'bg-blue-800 text-white': toppingEnter.map(t=>t.toppingName).includes(topping.toppingName),
+                      'bg-blue-800 text-white': toppingEnter
+                        .map((t) => t.toppingName)
+                        .includes(topping.toppingName),
                     }"
                     :key="topping.toppingId"
                     class="text-center w-32 border-blue-800 border-2 hover:bg-blue-800 hover:text-white font-bold py-0.5 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out btn btn-primary cursor-pointer"
@@ -153,35 +184,44 @@
                   </option>
                 </div>
               </span>
-                <span v-else class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold  rounded">
-                  <span class="  bg-blue-800  px-4 ml-4 mr-2 rounded"
+              <span
+                v-else
+                class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold rounded"
+              >
+                <span
+                  class="bg-blue-800 px-4 ml-4 mr-2 rounded"
                   v-for="top in icecream.icecreamHasToppings"
                   value="topping"
                   id="topping"
                   :key="top.topping.toppingId"
-                  name="topping"> {{ top.topping.toppingName}} </span>
+                  name="topping"
+                >
+                  {{ top.topping.toppingName }}
                 </span>
-          </div>
-         
+              </span>
+            </div>
 
-          <div class="flex flex-row-reverse">
-            <button
-              v-if="isEdit"
-              class="ml-4 justify-center btn btn-primary bg-gradient-to-b from-green-500 to-green-800 hover:from-blue-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-              type="button "
-              @click.prevent="submit(icecream)"
-            >  Save </button>
+            <div class="flex flex-row-reverse">
+              <button
+                v-if="isEdit"
+                class="ml-4 justify-center btn btn-primary bg-gradient-to-b from-green-500 to-green-800 hover:from-blue-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                type="button "
+                @click.prevent="submit()"
+              >
+                Save
+              </button>
 
-            <button
-              v-if="!isEdit"
-              class="justify-center btn btn-primary bg-gradient-to-b from-blue-500 to-blue-800 hover:from-pink-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-              type="button "
-              @click="edit">
-              Edit
-            </button>
+              <button
+                v-if="!isEdit"
+                class="justify-center btn btn-primary bg-gradient-to-b from-blue-500 to-blue-800 hover:from-pink-500 hover:to-blue-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                type="button "
+                @click="edit"
+              >
+                Edit
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
@@ -205,36 +245,46 @@ export default {
       lastdayEnter: "",
       toppingEnter: [],
       isEdit: false,
-      image:"",
-      uploadImage:null
-    
+      image: "",
+      uploadImage: null,
     };
   },
   props: ["icecream"],
   methods: {
     selectTopping(topping) {
-      if ( this.toppingEnter.map(t=>t.toppingName).includes(topping.toppingName)) {
-        this.toppingEnter = this.toppingEnter.filter((t) => t.toppingId !== topping.toppingId);
+      if (
+        this.toppingEnter
+          .map((t) => t.toppingName)
+          .includes(topping.toppingName)
+      ) {
+        this.toppingEnter = this.toppingEnter.filter(
+          (t) => t.toppingId !== topping.toppingId
+        );
       } else {
         this.toppingEnter.push(topping);
       }
     },
+    /*  uploadImg(event) {
+      var input = event.target;
+      if (input.files) {
+        var reader = new FileReader();
+        this.imageFile = input.files[0];
+        reader.readAsDataURL(input.files[0]);
+      }
+    },*/
     uploadImg(event) {
       const file = event.target.files[0];
       const reader = new FileReader();
+      this.image = {url:""}
       reader.onload = (event) => {
         this.image.url = event.target.result;
       };
       reader.readAsDataURL(file);
       this.imageFile = file;
-    
+      this.image.name = file.name;
     },
     selectSize(size) {
-      if (this.sizeEnter.includes(size)) {
-        this.sizeEnter = this.sizeEnter.filter((s) => s !== size);
-      } else {
-        this.sizeEnter.push(size);
-      }
+      this.sizeEnter = size;
     },
     close() {
       this.$emit("close-popup", false);
@@ -245,61 +295,93 @@ export default {
       this.nameEnter = this.icecream.icecreamName;
       this.priceEnter = this.icecream.price;
       this.descriptionEnter = this.icecream.description;
+      this.sizeEnter = this.icecream.size;
+      this.brandEnter = this.icecream.brand;
+      this.toppingEnter = this.icecream.icecreamHasToppings.map(
+        (t) => t.topping
+      );
+      this.lastdayEnter = this.icecream.lastday;
+      console.log(this.sizeEnter);
+      console.log(this.brandEnter);
+
+      /*  this.nameEnter = this.icecream.icecreamName;
+      this.priceEnter = this.icecream.price;
+      this.descriptionEnter = this.icecream.description;
       this.sizeEnter = this.icecream.size.sizeType;
       this.brandEnter = this.icecream.brand.brandName;
       this.toppingEnter = this.icecream.icecreamHasToppings.map(t => t.topping);
-      this.lastdayEnter = this.icecream.lastday;
+      this.lastdayEnter = this.icecream.lastday;*/
     },
-    submit(icecream) {
+    submit() {
       if (this.isEdit) {
-        this.$emit("icecream-submit", {
-          image: icecream.image,
-          name: this.nameEnter,
-          price: this.priceEnter,
-          description: this.descriptionEnter,
-          size: this.sizeEnter,
-          brand: this.brandEnter,
-          lastday: this.lastdayEnter,
-          topping: this.toppingEnter,
-          id: icecream.icecreamId,
-        });
+        if (this.imageFile == null) {
+          this.$emit("icecream-submit", {
+            icecreamId: this.icecream.icecreamId,
+            image: this.icecream.image,
+            icecreamName: this.nameEnter,
+            price: this.priceEnter,
+            description: this.descriptionEnter,
+            size: this.sizeEnter,
+            brand: this.brandEnter,
+            lastday: this.lastdayEnter,
+            icecreamHasToppings: this.toppingEnter,
+          });
+        } else {
+          this.$emit(
+            "icecream-submit",
+            {
+              image: this.image.name,
+              icecreamId: this.icecream.icecreamId,
+              icecreamName: this.nameEnter,
+              price: this.priceEnter,
+              description: this.descriptionEnter,
+              size: this.sizeEnter,
+              brand: this.brandEnter,
+              lastday: this.lastdayEnter,
+              icecreamHasToppings: this.toppingEnter,
+            },
+            this.imageFile
+          );
+        }
         this.close();
       }
     },
     async fetchTopping() {
-      const res = await fetch(`${process.env.VUE_APP_ROOT_API}topping`);
+      const res = await fetch("http://localhost:6001/topping");
       const data = await res.json();
       return data;
     },
     async fetchSize() {
-      const res = await fetch(`${process.env.VUE_APP_ROOT_API}size`);
+      const res = await fetch("http://localhost:6001/size");
       const data = await res.json();
       return data;
     },
     async fetchBrand() {
-      const res = await fetch(`${process.env.VUE_APP_ROOT_API}brand`);
-      const data = await res.json();
-      return data;
-
-    },async fetchIcecreams() {
-      const res = await fetch(`${process.env.VUE_APP_ROOT_API}icecream`+"/"+ this.icecream.icecreamId);
+      const res = await fetch("http://localhost:6001/brand");
       const data = await res.json();
       return data;
     },
-
+    async fetchIcecreams() {
+      const res = await fetch(
+        "http://localhost:6001/icecream" + "/" + this.icecream.icecreamId
+      );
+      const data = await res.json();
+      return data;
+    },
   },
   async created() {
     this.sizeArray = await this.fetchSize();
     this.brandArray = await this.fetchBrand();
     this.toppingArray = await this.fetchTopping();
-       }, 
-   watch: {
-       icecream: async function icecreamidCheck() {
-                if (this.icecream.image != undefined) {
-                    this.image = await fetch("http://localhost:6001/image/"+this.icecream.image);
-                }
-            }
-        }
-   
+  },
+  watch: {
+    icecream: async function icecreamidCheck() {
+      if (this.icecream.image != undefined) {
+        this.image = await fetch(
+          "http://localhost:6001/image/" + this.icecream.image
+        );
+      }
+    },
+  },
 };
 </script>

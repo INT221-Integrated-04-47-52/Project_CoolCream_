@@ -13,7 +13,7 @@
       <span
       class="text-gray-600 font-sans text-xl
   py-2 font-bold mb-2 "
-      ><br>{{ icecream.price }}</span>
+      ><br>{{ icecream.price }} Baht</span>
       <span
       class="text-gray-600 font-sans text-xl
   py-2 font-bold mb-2 "
@@ -65,6 +65,10 @@ export default {
     
   }, async created() {
       this.image = await fetch("http://localhost:6001/image"+"/"+ this.icecream.image)},
+ watch :{
+    icecream: async function icecreamImage(){
+      this.image = await fetch("http://localhost:6001/image/"+ this.icecream.image)},
+    }
 };
 </script>
 <style>
