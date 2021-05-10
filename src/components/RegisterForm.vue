@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="bg-white text-left w-12/12 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
+    <div
+      class="bg-white text-left w-12/12 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+    >
       <div class="mb-4 w-full">
         <label
           class="block text-center text-black text-xl py-2 font-bold mb-2"
@@ -34,7 +36,8 @@
             >
             <input
               class="mt-2 shadow text-left appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out invalid-feedback"
-              type="number" step="0.01"
+              type="number"
+              step="0.01"
               id="price"
               name="price"
               v-model.trim="icecream.priceEnter"
@@ -57,7 +60,9 @@
               v-model.trim="icecream.descriptionEnter"
             />
           </div>
-          <div class="text-red-600">{{ validator.description.error.message }}</div>
+          <div class="text-red-600">
+            {{ validator.description.error.message }}
+          </div>
           <!-- Brand -->
 
           <div class="form-control">
@@ -69,17 +74,21 @@
 
             <div>
               <select
-                class="border-2 w-2/12 p-2 transform transition duration-300 ease-in-out"
+                class="border-2 w-5/12 p-2 transform transition duration-300 ease-in-out"
                 id="brand"
                 name="banlist"
                 v-model="icecream.brandEnter"
               >
-                <option :value="brand" v-for="brand in brandArray" :key="brand.brandId">
+                <option
+                  :value="brand"
+                  v-for="brand in brandArray"
+                  :key="brand.brandId"
+                >
                   {{ brand.brandName }}
                 </option>
               </select>
             </div>
-            <div>{{ icecream.brandEnter }}</div>
+          
           </div>
           <div class="text-red-600">{{ validator.brand.error.message }}</div>
           <!-- Size -->
@@ -115,13 +124,15 @@
               >Last day of sale</label
             >
             <input
-              class="shadow text-left justify-start appearance-none border rounded w-2/12 p-3 text-gray-700 leading-tight focus:ring"
+              class="shadow text-left justify-start appearance-none border rounded w-6/12 p-3 text-gray-700 leading-tight focus:ring"
               type="date"
               id="lastday"
               name="lastday"
               v-model="icecream.lastdayEnter"
             />
-            <div class="text-red-600">{{ validator.lastday.error.message }}</div>
+            <div class="text-red-600">
+              {{ validator.lastday.error.message }}
+            </div>
           </div>
 
           <!-- Topping-->
@@ -161,21 +172,24 @@
                 >
                   <img :src="topping.toppingImage" alt="imagesTopping" />
                 </div>
+                
               </div>
-              <div>{{ this.icecream.toppingEnter }}</div>
-            </div>
+              <div class="text-red-600">{{ validator.topping.error.message }}</div>
           </div>
-          <div class="text-red-600">{{ validator.topping.error.message }}</div>
-          <div>
+        </div>
             <label
               class="text-left block mt-4 text-blue-600 font-bold items-start"
               htmlFor="image"
               >Image</label
             >
 
-            <input type="file" class="w-80 mt-4 focus:outline-none" @change="uploadImg" />
+            <input
+              type="file"
+              class="w-80 mt-4 focus:outline-none"
+              @change="uploadImg"
+            />
             <img class="m-8" alt="" :src="image.url" />
-          </div>
+        
           <div class="text-red-600">{{ validator.image.error.message }}</div>
           <div class="text-center">
             <button
@@ -185,8 +199,8 @@
               Submit
             </button>
             <p v-if="invalidInput" class="text-center text-red-600 m-5">
-              *** One or more input fields are invalid *** <br />- Please check your
-              provided data -
+              *** One or more input fields are invalid *** <br />- Please check
+              your provided data -
             </p>
             <p v-if="error">{{ error }}</p>
           </div>
@@ -300,18 +314,27 @@ export default {
       }
       if (this.icecream.nameEnter.length > this.validator.name.maxLength) {
         this.validator.name.error.message =
-          "***Please input name less than " + this.validator.name.maxLength + "***";
+          "***Please input name less than " +
+          this.validator.name.maxLength +
+          "***";
       }
       if (this.icecream.descriptionEnter === "") {
-        this.validator.description.error.message = "***Please Input your description***";
+        this.validator.description.error.message =
+          "***Please Input your description***";
       }
-      if (this.icecream.descriptionEnter.length < this.validator.description.minLength) {
+      if (
+        this.icecream.descriptionEnter.length <
+        this.validator.description.minLength
+      ) {
         this.validator.description.error.message =
           "***Plese input description more than " +
           this.validator.description.minLength +
           "***";
       }
-      if (this.icecream.descriptionEnter.length > this.validator.description.maxLength) {
+      if (
+        this.icecream.descriptionEnter.length >
+        this.validator.description.maxLength
+      ) {
         this.validator.description.error.message =
           "***Plese input description less than " +
           this.validator.description.maxLength +
@@ -322,11 +345,15 @@ export default {
       }
       if (this.icecream.priceEnter.length < this.validator.price.minLength) {
         this.validator.price.error.message =
-          "***Plese input price more than " + this.validator.price.minLength + "***";
+          "***Plese input price more than " +
+          this.validator.price.minLength +
+          "***";
       }
       if (this.icecream.priceEnter.length > this.validator.price.maxLength) {
         this.validator.price.error.message =
-          "***Plese input price less than " + this.validator.price.maxLength + "***";
+          "***Plese input price less than " +
+          this.validator.price.maxLength +
+          "***";
       }
       if (this.icecream.brandEnter === "") {
         this.validator.brand.error.message = "***Please Input your brand***";
@@ -337,11 +364,14 @@ export default {
       }
 
       if (this.icecream.lastdayEnter === "") {
-        this.validator.lastday.error.message = "***Please Input your lastday***";
+        this.validator.lastday.error.message =
+          "***Please Input your lastday***";
       }
 
-      if (this.icecream.toppingEnter === "") {
-        this.validator.topping.error.message = "***Please Input your topping***";
+      if ( this.icecream.toppingEnter.length == 0 ) {
+       
+        this.validator.topping.error.message =
+          "***Please Input your topping***";
       }
       if (this.icecream.image === "") {
         this.validator.image.error.message = "***Please Add your image***";
@@ -352,63 +382,11 @@ export default {
         this.icecream.priceEnter === "" ||
         this.icecream.brandEnter === "" ||
         this.icecream.sizeEnter === "" ||
-        this.icecream.toppingEnter === [] ||
+        this.icecream.toppingEnter.length == 0 ||
         this.icecream.lastdayEnter === ""
       );
     },
 
-  /*  async submitSurvey() {
-      if (this.checkError()) {
-        this.invalidInput = true;
-        return;
-      }
-      this.invalidInput = false;
-      this.error = null;
-      this.icecream.icecreamId = (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
-      for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
-        let hasToppingId =
-          (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
-          1 +
-          i;
-        this.icecream.icecreamHasTopping.push({
-          hasToppingId: hasToppingId,
-          topping: this.icecream.toppingEnter[i],
-        });
-      }
-      let iceProduct = {
-        icecreamId: this.icecream.icecreamId,
-        image: this.icecream.image,
-        icecreamName: this.icecream.nameEnter,
-        price: this.icecream.priceEnter,
-        description: this.icecream.descriptionEnter,
-        size: this.icecream.sizeEnter,
-        brand: this.icecream.brandEnter,
-        lastday: this.icecream.lastdayEnter,
-        icecreamHasToppings: this.icecream.icecreamHasTopping,
-      };
-      let jsonIcecream = await JSON.stringify(iceProduct);
-      const blob = await new Blob([jsonIcecream], {
-        type: "application/json",
-      });
-      let formData = new FormData();
-      formData.append("file", this.imageFile, this.icecream.image);
-      await formData.append("newIcecream", blob);
-      await fetch("http://localhost:6001/add/"+this.iceccream.icecreamId, {  headers: {
-          "Content-type": "application/json",
-        },method: "POST", body: jsonIcecream });
-
-      fetch("http://localhost:6001/add/image"+ this.icecream.icecreamId, {
-        method: "POST",
-       
-        body: formData,
-      });
-      console.log("dfsrsfdsv" + jsonIcecream);
-      console.log("fdaffd" + formData);
-      formData.append("file", this.imageFile, this.icecream.image);
-
-      console.log(formData);
-    } /*},*/
-   
     async submitSurvey() {
       if (this.checkError()) {
         this.invalidInput = true;
@@ -417,10 +395,13 @@ export default {
       this.invalidInput = false;
       this.error = null;
       this.icecream.icecreamId =
-        (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
+        (await (await fetch("http://localhost:6001/max-icecreamId")).json()) +
+        1;
       for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
         let hasToppingId =
-          (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
+          (await (
+            await fetch("http://localhost:6001/max-icecreamHasToppingId")
+          ).json()) +
           1 +
           i;
         this.icecream.icecreamHasTopping.push({
@@ -442,323 +423,31 @@ export default {
       let jsonIcecream = await JSON.stringify(iceProduct);
       console.log(jsonIcecream);
       const blob = await new Blob([jsonIcecream], {
-      type: "application/json",
-    });
+        type: "application/json",
+      });
       let formData = new FormData();
       formData.append("image", this.imageFile, this.icecream.image);
       await formData.append("newIcecream", blob);
       await fetch("http://localhost:6001/add/image/", {
         method: "POST",
         body: formData,
+      
       });
-     
       alert("🦄🦋 - Add data success - 💖🔆");
-       this.icecream.icecreamId =="";
-      this.icecream.nameEnter=="";
-       this.icecream.priceEnter=="";
-        this.icecream.descriptionEnter=="";
-         this.icecream.sizeEnter=="";
-        this.icecream.brandEnter=="";
-         this.icecream.lastdayEnter=="";
-        this.icecream.icecreamHasTopping=="";
-        this.icecream.image=="";
-    } ,
-    /*.then((response) => {
-          if (response.ok) {
-            // ...
-          } else {
-            throw new Error('Could not save data!');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = error.message;
-        });
-          this.imageFile= null;
-          this.icecream.nameEnter= "";
-          this.icecream.priceEnter= "";
-          this.icecream.descriptionEnter= "";
-          this.icecream.sizeEnter= "";
-          this.icecream.brandEnter= "";
-           this.icecream.lastdayEnter= "";
-           this.icecream.toppingEnter= [];*/
-    /*   async submitSurvey() {
-    
-    if (this.checkError()) {
-      this.invalidInput = true;
-      return;
-    }
-    this.invalidInput = false;
-    this.error = null;
-    this.icecream.icecreamId =
-      (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
-    for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
-      let hasToppingId =
-        (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
-        1 +
-        i;
-      this.icecream.icecreamHasTopping.push({
-        hasToppingId: hasToppingId,
-        topping: this.icecream.toppingEnter[i],
-      });
-    }
-    let iceProduct = {
-      icecreamId: this.icecream.icecreamId,
-      image: this.icecream.image,
-      icecreamName: this.icecream.nameEnter,
-      price: this.icecream.priceEnter,
-      description: this.icecream.descriptionEnter,
-      size: this.icecream.sizeEnter,
-      brand: this.icecream.brandEnter,
-      lastday: this.icecream.lastdayEnter,
-      icecreamHasToppings: this.icecream.icecreamHasTopping,
-    };
-    const jsonIcecream = await JSON.stringify(iceProduct);
-    const blob = await new Blob([jsonIcecream], {
-      type: "application/json",
-    });
-    let formData = new FormData();
-    formData.append("file", this.imageFile, this.icecream.image);
-    await formData.append("newIcecream", blob);
-    console.log(formData)
-    await fetch("http://localhost:6001/add/image", { method: "POST", body: formData })
-      .then((response) => {
-        if (response.ok) {
-          // ...
-        } else {
-          throw new Error("Could not save data!");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        this.error = error.message;
-      });
-    this.image = "Upload your image";
-    this.nameEnter = "";
-    this.priceEnter = "";
-    this.descriptionEnter = "";
-    this.sizeEnter = "";
-    this.brandEnter = "";
-    this.lastdayEnter = "";
-    this.toppingEnter = [];
-  }, /*} อันนี้ของคามิน*/
-    /* 
-    async submitSurvey() {
-    
-      if (this.checkError()) {
-        this.invalidInput = true;
-        return;
-      }
-      this.invalidInput = false;
-      this.error = null;
-      this.icecream.icecreamId =
-        (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
-      for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
-        let hasToppingId =
-          (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
-          1 +
-          i;
-        this.icecream.icecreamHasTopping.push({
-          hasToppingId: hasToppingId,
-          topping: this.icecream.toppingEnter[i],
-        });
-      }
-      let iceProduct = {
-        icecreamId: this.icecream.icecreamId,
-        image: this.icecream.image,
-        icecreamName: this.icecream.nameEnter,
-        price: this.icecream.priceEnter,
-        description: this.icecream.descriptionEnter,
-        size: this.icecream.sizeEnter,
-        brand: this.icecream.brandEnter,
-        lastday: this.icecream.lastdayEnter,
-        icecreamHasToppings: this.icecream.icecreamHasTopping,
-      };
-      let jsonIcecream = await JSON.stringify(iceProduct);
-      const blob = await new Blob([jsonIcecream], {
-        type: "application/json",
-      });
-      let formData = new FormData();
-      formData.append("file", this.imageFile, this.icecream.image);
-      await formData.append("newIcecream", blob);
-      await fetch("http://localhost:6001/add/image", { method: "POST", body: formData })
-    },*/
-    /*  fetch("http://localhost:6001/add/image", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: jsonIcecream,
-     
-      });
-      console.log("dfsrsfdsv"+jsonIcecream)
-   
-      console.log("fdaffd"+formData)
-     
-      let formData = new FormData();
-      formData.append("file", this.imageFile, this.icecream.image);
-      
-      console.log(formData)
-   
-    } ,/*},
-   
-  
-     async submitSurvey() {
-    
-      if (this.checkError()) {
-        this.invalidInput = true;
-        return;
-      }
-      this.invalidInput = false;
-      this.error = null;
-      this.icecream.icecreamId =
-        (await (await fetch("http://localhost:6001/max-icecreamId")).json()) + 1;
-      for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
-        let hasToppingId =
-          (await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json()) +
-          1 +
-          i;
-        this.icecream.icecreamHasTopping.push({
-          hasToppingId: hasToppingId,
-          topping: this.icecream.toppingEnter[i],
-        });
-      }
-      let iceProduct = {
-        icecreamId: this.icecream.icecreamId,
-        image: this.icecream.image,
-        icecreamName: this.icecream.nameEnter,
-        price: this.icecream.priceEnter,
-        description: this.icecream.descriptionEnter,
-        size: this.icecream.sizeEnter,
-        brand: this.icecream.brandEnter,
-        lastday: this.icecream.lastdayEnter,
-        icecreamHasToppings: this.icecream.icecreamHasTopping,
-      };
-      const jsonIcecream = await JSON.stringify(iceProduct);
-      const blob = await new Blob([jsonIcecream], {
-        type: "application/json",
-      });
-      let formData = new FormData();
-      formData.append("file", this.imageFile, this.icecream.image);
-      await formData.append("newIcecream", blob);
-      console.log(formData)
-      await fetch("http://localhost:6001/add/image", { method: "POST", body: formData })
-  
-        .then((response) => {
-          if (response.ok) {
-            // ...
-          } else {
-            throw new Error("Could not save data!");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = error.message;
-        });
-      this.image = "Upload your image";
-      this.nameEnter = "";
-      this.priceEnter = "";
-      this.descriptionEnter = "";
-      this.sizeEnter = "";
-      this.brandEnter = "";
-      this.lastdayEnter = "";
-      this.toppingEnter = [];
-    }, /*},,
-    /*async submitSurvey() {
-     
-      if (this.checkError()) {
-        this.invalidInput = true;
-        return;}
-      this.invalidInput = false;
-      this.error = null;
-      this.icecream.icecreamId = await (await fetch("http://localhost:6001/max-icecreamId")).json() + 1;
-      for(let i =0;i< this.icecream.toppingEnter.length; i++ ){
-       let hasToppingId = await (await fetch("http://localhost:6001/max-icecreamHasToppingId")).json() + 1 +i;
-        this.icecream.icecreamHasTopping.push({hasToppingId: hasToppingId,topping: this.icecream.toppingEnter[i]})
-      }
-      let iceProduct = {
-          icecreamId: this.icecream.icecreamId,
-          image: this.icecream.image,
-          icecreamName : this.icecream.nameEnter,
-          price: this.icecream.priceEnter,
-          description: this.icecream.descriptionEnter,
-          size: this.icecream.sizeEnter,
-          brand: this.icecream.brandEnter,
-          lastday: this.icecream.lastdayEnter,
-          icecreamHasToppings: this.icecream.icecreamHasTopping
-    }
-    console.log(iceProduct)
-    const jsonIcecream = await JSON.stringify(iceProduct);
-      const blob = await new Blob([jsonIcecream], {
-        type: "application/json",
-      });
-      let formData = new FormData();
-      formData.append("file", this.imageFile,this.icecream.image);
-      await formData.append("newIcecream", blob);
-      
-   try{const res =  await fetch("http://localhost:6001/add/image", {
-        method: 'POST',
-        body: formData
-      })
-        const data = await res.json()
-        if(data.error){
-          this.icecream.image =  null;
-          this.icecream.nameEnter= "";
-          this.icecream.priceEnter= "";
-          this.icecream.descriptionEnter= "";
-          this.icecream.sizeEnter= "";
-          this.icecream.brandEnter= "";
-          this.icecream.lastdayEnter= "";
-          this.icecream.icecreamHasTopping= "";
-        }
-      }
-        catch (error) {
-       console.log(`Could not save! ${error}`)
-     }
-       /*
-        fetch(("http://localhost:6001/add"), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          icecreamId: this.icecream.icecreamId,
-          image: this.icecream.image,
-          icecreamName : this.icecream.nameEnter,
-          price: this.icecream.priceEnter,
-          description: this.icecream.descriptionEnter,
-          size: this.icecream.sizeEnter,
-          brand: this.icecream.brandEnter,
-          lastday: this.icecream.lastdayEnter,
-          topping: this.icecream.toppingEnter,
-        
-        }) ,*/
-    /* }).then((response) => {
-          if (response.ok) {
-            // ...
-          } else {
-            throw new Error('Could not save data!');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = error.message;
-        });
-          this.imageFile= null;
-          this.icecream.nameEnter= "";
-          this.icecream.priceEnter= "";
-          this.icecream.descriptionEnter= "";
-          this.icecream.sizeEnter= "";
-          this.icecream.brandEnter= "";
-           this.icecream.lastdayEnter= "";
-           this.icecream.toppingEnter= [];
-    /*  const data = await res.json();
-      if (data) {
-        //...
-      } else {
-        throw new Error("Could not save data!");
-      }
-    */ async fetchSize() {
+      this.$router.push("/AllProduct");
+
+
+      /*this.icecream.icecreamId == "";
+      this.icecream.nameEnter == "";
+      this.icecream.priceEnter == "";
+      this.icecream.descriptionEnter == "";
+      this.icecream.sizeEnter == "";
+      this.icecream.brandEnter == "";
+      this.icecream.lastdayEnter == "";
+      this.icecream.icecreamHasTopping == "";
+      this.icecream.image == "";*/
+    },
+    async fetchSize() {
       const res = await fetch(this.urlSize);
       const data = await res.json();
       return data;
@@ -781,13 +470,3 @@ export default {
   },
 };
 </script>
-<style>
-#login-logo {
-  width: 100%;
-  height: 200px;
-  object-fit: scale-down;
-}
-.card {
-  max-width: 450px;
-}
-</style>
