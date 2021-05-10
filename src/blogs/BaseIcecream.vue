@@ -64,10 +64,10 @@ export default {
     }, 
     
   }, async created() {
-      this.image = await fetch("http://localhost:6001/image"+"/"+ this.icecream.image)},
+      this.image = await fetch(`${process.env.VUE_APP_ROOT_API}image`+"/"+ this.icecream.image)},
  watch :{
     icecream: async function icecreamImage(){
-      this.image = await fetch("http://localhost:6001/image/"+ this.icecream.image)},
+      this.image = await fetch(`${process.env.VUE_APP_ROOT_API}image/`+ this.icecream.image)},
     }
 };
 </script>

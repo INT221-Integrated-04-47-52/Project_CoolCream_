@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     async fetchBrand() {
-      const res = await fetch("http://localhost:6001/brand");
+      const res = await fetch(`${process.env.VUE_APP_ROOT_API}brand`);
       const data = await res.json();
       return data;
     },

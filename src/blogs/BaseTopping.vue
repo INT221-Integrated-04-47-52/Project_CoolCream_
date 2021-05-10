@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     async fetchTopping() {
-      const res = await fetch("http://localhost:6001/topping");
+      const res = await fetch(`${process.env.VUE_APP_ROOT_API}topping`);
       const data = await res.json();
       return data;
     },
