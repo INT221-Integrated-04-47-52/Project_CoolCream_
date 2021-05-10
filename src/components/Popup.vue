@@ -347,23 +347,23 @@ export default {
       }
     },
     async fetchTopping() {
-      const res = await fetch("http://localhost:6001/topping");
+      const res = await fetch(`${process.env.VUE_APP_ROOT_API}topping`);
       const data = await res.json();
       return data;
     },
     async fetchSize() {
-      const res = await fetch("http://localhost:6001/size");
+      const res = await fetch(`${process.env.VUE_APP_ROOT_API}size`);
       const data = await res.json();
       return data;
     },
     async fetchBrand() {
-      const res = await fetch("http://localhost:6001/brand");
+      const res = await fetch(`${process.env.VUE_APP_ROOT_API}brand`);
       const data = await res.json();
       return data;
     },
     async fetchIcecreams() {
       const res = await fetch(
-        "http://localhost:6001/icecream" + "/" + this.icecream.icecreamId
+        `${process.env.VUE_APP_ROOT_API}icecream` + "/" + this.icecream.icecreamId
       );
       const data = await res.json();
       return data;
@@ -378,7 +378,7 @@ export default {
     icecream: async function icecreamidCheck() {
       if (this.icecream.image != undefined) {
         this.image = await fetch(
-          "http://localhost:6001/image/" + this.icecream.image
+          `${process.env.VUE_APP_ROOT_API}image/` + this.icecream.image
         );
       }
     },
