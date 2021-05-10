@@ -1,30 +1,14 @@
 <template>
-  <div class="mx-8">
-
+  <div class="">
     <first-home></first-home>
-    <base-topping></base-topping> 
-    </div>
+    <base-topping></base-topping>
+  </div>
 </template>
 
-
 <script>
-
-export default {
-  components: {
-
-  },
-  data() {
-    return {
-    };
-  },
-  methods: {
-    
-  },
-};
 </script>
 
 <style>
- 
 .toppics {
   font-family: "Fredoka One", sans-serif;
 }

@@ -1,91 +1,80 @@
 <template>
-  
-  <div class="w-6/6  bg-white border-2 border-black my-12 rounded-lg h-full">
-    <div class="m-4">
+  <div
+    class="mt-12 w-6/6 bg-white relative border-2 border-black rounded-lg h-full"
+  >
+    <div class="m-2 md:m-4">
       <div
-        class="mx-auto bg-cover bg-fixed bg-gradient-to-b from-blue-400 via-blue-200 to-green-200 w-full bg-white flex rounded-lg h-5/6"
+        class="mx-auto w-full h-5/6 flex bg-cover bg-fixed bg-gradient-to-b from-blue-400 via-blue-200 to-green-200 bg-white rounded-lg"
       >
-        <div class="w-1/6">
+        <div class="">
           <img
-            class="md:w-2/6  md:h-96 md:absolute md:bottom-24 md:right-18 md:justify-right md:object-right-bottom
-            w-2/6 h-32 absolute right-0 justify-right "
+            class="absolute top-3 -right-44 h-40 md:-top-7 md:-right-32 md:h-96"
             :src="require('../assets/cloudright.png')"
-            alt="image"/>
+            alt="image"
+          />
         </div>
-        <div
-          class="flex m-4 my-48 justify-start text-left place-items-start md:flex md:justify-left"
-        >
-          <div>
-            <img
-              class="md:w-8/12 md:h-48 w-12/12 h-8/12 flex "
-              :src="require('../assets/welcome.png')"
-              alt="image"
-            />
-          </div>
-          <div>
-            <img
-              class="md:w-6/6 md:h-96 md:absolute md:top-96 md:mt-48 md:left-0
-              w-3/6 h-48 absolute left-0 bottom-2 justify-left  "
-              :src="require('../assets/cloudright.png')"
-              alt="image"
-            />
-          </div>
+
+        <div class="my-20 mx-10 md:my-40 md:mx-20">
+          <img
+            class="md:w-8/12 md:h-48"
+            :src="require('../assets/welcome.png')"
+            alt="image"
+          />
         </div>
       </div>
     </div>
   </div>
+  <div class="relative h-48 -ml-36 -mt-20 md:h-96 md:-ml-32 md:-mt-40">
+    <img
+      class="absolute top-0 left-0 h-48 md:h-80"
+      :src="require('../assets/cloudright.png')"
+      alt="image"
+    />
+  </div>
+
   <div class="">
     <img
-      class="md:flex md:top-96 md:mt-48 md:left-0 md:w-5/6 "
+      class="w-6/6 md:w-5/6"
       :src="require('../assets/letseat.png')"
       alt="image"
     />
- 
-      
-    <div class="flex md:justify-center justify-start ">
+
+    <div class="flex md:justify-center justify-start">
       <div
-        class="transition ease-in duration-700 md:w-3/6  py-2 bg-white border-4 border-black my-12 rounded-lg h-full"
+        class="my-5 h-full bg-white border-4 border-black rounded-lg md:w-2/3 md:my-20"
       >
         <div
-          class="md:px-12  px-2 space-y-2 mx-2 bg-cover bg-fixed bg-gradient-to-b from-green-400 via-blue-100 to-blue-400 flex rounded-lg h-full"
+          class="m-2 p-5 md:p-12 bg-cover bg-fixed bg-gradient-to-b from-green-400 via-blue-100 to-blue-400 flex rounded-lg h-full"
         >
-          <p
-            class="toppics  bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500 md:py-8 py-2 topics text-left md:text-5xl text-3xl text-gradient-to-b from-blue-400 via-blue-200 to-green-200"
+          <span
+            class="toppics bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500 topics text-left md:text-5xl text-3xl text-gradient-to-b from-blue-400 via-blue-200 to-green-200"
           >
             Ice cream
-            <br />
-            <span class="text-blue-600 text-sm md:text-2xl "
-              >(derived from earlier iced cream or cream ice)</span
+            <p
+              class="my-2 text-justify text-blue-600 text-sm md:text-2xl md:my-3"
             >
-            <span class="md:text-2xl pl-8 text-sm text-black ml-16">
-              <br><span class="pl-8">Icecream is a sweetened frozen food</span>
-              <span class="text-sm md:text-2xl">
-                typically eaten as a snack or dessert. It may be made from dairy
-                milk or cream and is flavoured with a sweetener.
-              </span>
-            </span>
-          </p>
+              (derived from earlier iced cream or cream ice)
+            </p>
+            <p class="text-justify text-sm text-black md:text-2xl">
+              Icecream is a sweetened frozen food typically eaten as a snack or
+              dessert. It may be made from dairy milk or cream and is flavoured
+              with a sweetener.
+            </p>
+          </span>
         </div>
       </div>
-  
-      
     </div>
-   
   </div>
-  
-  <div class="md:text-9xl text-7xl font-black flex items-center justify-center relative h-96 w-full mt-20 mb-16">
-    <div
-      class="icecream3 absolute md:top-10 top-14 text-black "
-    >
+
+  <div
+    class="md:text-9xl md:h-96 text-6xl font-black flex items-center justify-center relative h-52 w-full"
+  >
+    <div class="icecream3 absolute md:top-10 top-10 text-black">ICECREAM</div>
+    <div class="icecream3 icecream32 absolute md:top-28 top-20 text-white">
       ICECREAM
     </div>
     <div
-      class="icecream3 icecream32 absolute md:top-28  top-24 text-white"
-    >
-      ICECREAM
-    </div>
-    <div
-      class="icecream3 icecream33 absolute md:top-48 top-32 text-divurdivle-800"
+      class="icecream3 icecream33 absolute md:top-48 top-28 text-divurdivle-800"
     >
       ICECREAM
     </div>
