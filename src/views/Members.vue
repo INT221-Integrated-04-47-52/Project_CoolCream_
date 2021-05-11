@@ -16,7 +16,7 @@
             <p>- Back-End</p>
           </div>
           <div class="flex space-x-2 text-black text-sm my-3">
-            <p>- DataBase</p>
+            <p>- Database</p>
           </div>
           
           <div class="border-t-2"></div>
@@ -45,7 +45,7 @@
             <p>- Back-End</p>
           </div>
           <div class="flex space-x-2 text-black text-sm my-3">
-            <p>- DataBase</p>
+            <p>- Database</p>
           </div>
           
           <div class="border-t-2"></div>
