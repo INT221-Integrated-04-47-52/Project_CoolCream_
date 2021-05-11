@@ -34,7 +34,7 @@ export default {
       isVisible: false,
       ifEdit: false,
       icecreams: [],
-      urlIcecream: "http://localhost:6001/icecream",
+      urlIcecream: `${process.env.VUE_APP_ROOT_API}icecream`,
     };
   },
   methods: {
@@ -48,7 +48,7 @@ export default {
         for (let i = 0; i < iceToplength; i++) {
           let hasToppingId =
             (await (
-              await fetch("http://localhost:6001/max-icecreamHasToppingId")
+              await fetch(`${process.env.VUE_APP_ROOT_API}max-icecreamHasToppingId`)
             ).json()) +
             1 +
             i;
@@ -79,7 +79,7 @@ export default {
         await formData.append("editIcecream", blob);
         let data = "";
         if (imageFile == undefined) {
-          const res = await fetch("http://localhost:6001/edit", {
+          const res = await fetch(`${process.env.VUE_APP_ROOT_API}edit`, {
             method: "PUT",
             body: formData,
             /* type: "application/json",*/
@@ -91,7 +91,7 @@ export default {
           console.log(data);
         } else {
           formData.append("image", imageFile, icecream.image);
-          const res = await fetch("http://localhost:6001/edit/image", {
+          const res = await fetch(`${process.env.VUE_APP_ROOT_API}edit/image`, {
             method: "PUT",
             body: formData,
           });
@@ -116,7 +116,7 @@ export default {
     async deleteicecream(payload) {
       try {
         await fetch(
-          "http://localhost:6001/delete/" +
+          `${process.env.VUE_APP_ROOT_API}delete/` +
             payload /*"http://localhost:6001/"+"delete/"+payload*/,
           {
             method: "DELETE",
@@ -133,7 +133,7 @@ export default {
       }
     },
     async fetchicecreams() {
-      const res = await fetch("http://localhost:6001/icecream");
+      const res = await fetch(`${process.env.VUE_APP_ROOT_API}icecream`);
       const data = await res.json();
       return data;
     },

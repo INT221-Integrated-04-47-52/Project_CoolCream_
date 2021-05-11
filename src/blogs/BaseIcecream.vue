@@ -57,20 +57,14 @@ export default {
     },
     toggleVisibility() {
       this.$emit("icecream-popup", this.icecream);
-    },
-  },
-  async created() {
-    this.image = await fetch(
-      "http://localhost:6001/image" + "/" + this.icecream.image
-    );
-  },
-  watch: {
-    icecream: async function icecreamImage() {
-      this.image = await fetch(
-        "http://localhost:6001/image/" + this.icecream.image
-      );
-    },
-  },
+    }, 
+    
+  }, async created() {
+      this.image = await fetch(`${process.env.VUE_APP_ROOT_API}image`+"/"+ this.icecream.image)},
+ watch :{
+    icecream: async function icecreamImage(){
+      this.image = await fetch(`${process.env.VUE_APP_ROOT_API}image/`+ this.icecream.image)},
+    }
 };
 </script>
 <style>

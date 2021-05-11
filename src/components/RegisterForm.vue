@@ -234,11 +234,11 @@ export default {
         image: null,
         icecreamHasTopping: [],
       },
-      urlTopping: "http://localhost:6001/topping",
-      urlSize: "http://localhost:6001/size",
-      urlBrand: "http://localhost:6001/brand",
-      urlAddproduct: "http://localhost:6001/product",
-      urlDefault: "http://localhost:6001/",
+      urlTopping: `${process.env.VUE_APP_ROOT_API}topping`,
+      urlSize: `${process.env.VUE_APP_ROOT_API}size`,
+      urlBrand: `${process.env.VUE_APP_ROOT_API}brand`,
+      urlAddproduct: `${process.env.VUE_APP_ROOT_API}product`,
+      urlDefault: `${process.env.VUE_APP_ROOT_API}`,
       validator: {
         name: {
           required: true,
@@ -391,12 +391,12 @@ export default {
       this.invalidInput = false;
       this.error = null;
       this.icecream.icecreamId =
-        (await (await fetch("http://localhost:6001/max-icecreamId")).json()) +
+        (await (await fetch(`${process.env.VUE_APP_ROOT_API}max-icecreamId`)).json()) +
         1;
       for (let i = 0; i < this.icecream.toppingEnter.length; i++) {
         let hasToppingId =
           (await (
-            await fetch("http://localhost:6001/max-icecreamHasToppingId")
+            await fetch(`${process.env.VUE_APP_ROOT_API}max-icecreamHasToppingId`)
           ).json()) +
           1 +
           i;
@@ -424,7 +424,7 @@ export default {
       let formData = new FormData();
       formData.append("image", this.imageFile, this.icecream.image);
       await formData.append("newIcecream", blob);
-      await fetch("http://localhost:6001/add/image/", {
+      await fetch(`${process.env.VUE_APP_ROOT_API}add/image/`, {
         method: "POST",
         body: formData,
       });
