@@ -116,7 +116,7 @@ export default {
     async deleteicecream(payload) {
       try {
         await fetch(
-          `${process.env.VUE_APP_ROOT_API}delete` +
+          `${process.env.VUE_APP_ROOT_API}delete/` +
             payload /*"http://localhost:6001/"+"delete/"+payload*/,
           {
             method: "DELETE",
