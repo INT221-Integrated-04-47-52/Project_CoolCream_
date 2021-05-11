@@ -19,6 +19,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import BaseIcecream from "../blogs/BaseIcecream.vue";
 import Popup from "./Popup.vue";
@@ -99,7 +100,6 @@ export default {
         }
         if (data.icecreamId == this.icecream.icecreamId) {
           console.log("Success edit data");
-         
         }
       } catch (error) {
         console.log(`Could not edit! ${error}`);

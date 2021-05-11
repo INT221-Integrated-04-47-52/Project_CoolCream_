@@ -1,9 +1,11 @@
 <template>
   <div
-    class="flex justify-center items-center absolute md:fixed z-0 md:z-50 inset-x-0 top-5 md:inset-0"
+    class="flex justify-center items-center absolute inset-0 top-96 md:fixed z-0 md:z-50 md:top-5 md:inset-0"
   >
     <!-- div card popup -->
-    <div class="mx-16 w-screen h-auto p-5 bg-white rounded-3xl shadow-lg">
+    <div
+      class="w-full mx-2 md:mx-16 md:w-screen h-auto p-5 bg-white rounded-3xl shadow-lg"
+    >
       <div
         class="cursor-pointer focus:ring transform transition duration-300 ease-out flex flex-row-reverse"
         @click="close"
@@ -188,16 +190,18 @@
                 v-else
                 class="flex flex-row md:grid md:grid-flow-col text-center text-white font-bold rounded"
               >
-                <span
-                  class="bg-blue-800 px-4 ml-4 mr-2 rounded"
-                  v-for="top in icecream.icecreamHasToppings"
-                  value="topping"
-                  id="topping"
-                  :key="top.topping.toppingId"
-                  name="topping"
-                >
-                  {{ top.topping.toppingName }}
-                </span>
+                <div class="ml-2 grid grid-flow-col grid-cols-2 grid-rows-4 gap-2 md:grid-cols-4 md:grid-rows-2 md:gap-2">
+                  <span
+                    class="bg-blue-800 p-2 rounded"
+                    v-for="top in icecream.icecreamHasToppings"
+                    value="topping"
+                    id="topping"
+                    :key="top.topping.toppingId"
+                    name="topping"
+                  >
+                    {{ top.topping.toppingName }}
+                  </span>
+                </div>
               </span>
             </div>
 
@@ -275,7 +279,7 @@ export default {
     uploadImg(event) {
       const file = event.target.files[0];
       const reader = new FileReader();
-      this.image = {url:""}
+      this.image = { url: "" };
       reader.onload = (event) => {
         this.image.url = event.target.result;
       };
