@@ -9,13 +9,13 @@
         <a href="https://www.instagram.com/kpinnoes/"
           ><div>
             🐬 004 Khorapin Gadpu 💖
-            <span class="text-pink-300"> { 🌞 Front-End, Back-End 🌜 }</span>
+            <span class="text-pink-300"> { 🌞 Front-End, Back-End, Database 🌜 }</span>
           </div>
         </a>
         <a href="https://www.instagram.com/_n.nooch_/"
           ><div>
             🌸 047 Noochajee Phonbooncharoenchai 💚<span class="text-pink-300">
-              { 🌈 Front-End, Back-End 💥 }</span
+              { 🌈 Front-End, Back-End, Database💥 }</span
             >
           </div></a
         >

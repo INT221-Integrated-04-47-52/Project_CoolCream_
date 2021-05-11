@@ -1,6 +1,6 @@
 <template>
 
-  <the-navigator ></the-navigator>
+  <the-navigator></the-navigator>
   <router-view/>
   <foo-ter></foo-ter>
 </template>
