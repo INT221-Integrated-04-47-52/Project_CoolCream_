@@ -90,7 +90,7 @@ export default {
           console.log(data);
         } else {
           formData.append("image", imageFile, icecream.image);
-          const res = await fetch(`${process.env.VUE_APP_ROOT_API}image`, {
+          const res = await fetch(`${process.env.VUE_APP_ROOT_API}edit/image`, {
             method: "PUT",
             body: formData,
           });
